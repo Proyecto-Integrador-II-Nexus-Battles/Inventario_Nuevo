@@ -1,1 +1,12 @@
-//Este es un archivo de ejemplo de un controlador de Node.js. Reemplazar por otro archivo con un controlador real.
+import { CardModel } from '../models/models.js'
+
+export class cardsController {
+  static async getAll (req, res) {
+    const cards = await CardModel.getAll()
+    res.json(cards)
+  }
+
+  static async create (req, res) {
+
+  }
+}

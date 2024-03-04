@@ -1,1 +1,5 @@
-//Este es un archivo de ejemplo de una ruta de Node.js. Reemplazar por otro archivo con rutas reales.
+import { Router } from 'express'
+import { cardsController } from '../controllers/controller.js'
+
+export const cardsRoutes = Router()
+cardsRoutes.get('/info_cartas', cardsController.getAll)
