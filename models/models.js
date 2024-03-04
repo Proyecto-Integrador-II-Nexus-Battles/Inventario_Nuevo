@@ -1,5 +1,5 @@
 import mongoose, { model } from 'mongoose'
-import { armorSchema, heroesSchema } from '../schemas/cards.js'
+import { armorSchema, epicasSchema, heroesSchema, itemsSchema, weaponsSchema } from '../schemas/cards.js'
 const uri = 'mongodb+srv://dbShaj:4xAsYguGPdiU9EPv@cluster0.4jaifwg.mongodb.net/inventory?retryWrites=true&w=majority&appName=Cluster0'
 
 mongoose.connect(uri)
@@ -8,6 +8,9 @@ mongoose.connect(uri)
 
 const heroes = model('cards_heroes', heroesSchema)
 const armors = model('cards_armors', armorSchema)
+const items = model('cards_items', itemsSchema)
+const epics = model('cards_epics', epicasSchema)
+const weapons = model('cards_weapons', weaponsSchema)
 
 // Función para encontrar todas las cartas
 async function findCards () {
@@ -17,7 +20,17 @@ async function findCards () {
 
     // Consultar todas las cartas de armaduras
     const cardsArmors = await armors.find()
-    const allCards = [...cardsHeroes, ...cardsArmors]
+
+    // Consultar todas las cartas de items
+    const cardsItems = await items.find()
+
+    // Consultar todas las cartas de epics
+    const cardsEpics = await epics.find()
+
+    // Consultar todas las cartas de weapons
+    const cardsWeapons = await weapons.find()
+
+    const allCards = [...cardsHeroes, ...cardsArmors, ...cardsItems, ...cardsEpics, ...cardsWeapons]
 
     // Devolver todas las cartas combinadas
     return allCards
@@ -30,7 +43,15 @@ async function findCards () {
 
 // Clase para el modelo de la carta
 export class CardModel {
-  static async getAll () {
-    return await findCards() // Devolver todas las cartas
+  static async getAll (id) {
+    let cards = await findCards()
+    console.log(cards)
+
+    cards = cards.filter(card => {
+      return (
+        (!id || card.id.toLowerCase() === id.toLowerCase())
+      )
+    })
+    return cards // Devolver todas las cartas
   }
 }
