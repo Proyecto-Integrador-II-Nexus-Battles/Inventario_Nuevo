@@ -7,4 +7,9 @@ export class cardsController {
     const cards = await CardModel.getAll(id)
     res.json(cards)
   }
+
+  static async getEcommerceCard (req, res) {
+    const cards = await CardModel.getEcommerceCard()
+    res.json(cards)
+  }
 }
