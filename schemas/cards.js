@@ -2,7 +2,7 @@ import { Schema } from 'mongoose'
 
 // Esquema de armaduras
 export const armorSchema = new Schema({
-  id: { type: String, required: true },
+  _id: { type: String, required: true },
   imagePath: { type: String, required: true },
   TypeCard: { type: String, required: true },
   Name: { type: String, required: true },
@@ -14,13 +14,12 @@ export const armorSchema = new Schema({
 armorSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     delete returnedObject.__v
-    delete returnedObject._id
   }
 })
 
 // Esquema de héroes
 export const heroesSchema = new Schema({
-  id: { type: String, required: true },
+  _id: { type: String, required: true },
   imagePath: { type: String, required: true },
   TypeCard: { type: String, required: true },
   Power: { type: Number, required: true },
@@ -37,14 +36,13 @@ export const heroesSchema = new Schema({
 heroesSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     delete returnedObject.__v
-    delete returnedObject._id
   }
 })
 
 // Esquema de items
 
 export const itemsSchema = new Schema({
-  id: { type: String, required: true },
+  _id: { type: String, required: true },
   imagePath: { type: String, required: true },
   TypeCard: { type: String, required: true },
   Name: { type: String, required: true },
@@ -59,14 +57,13 @@ export const itemsSchema = new Schema({
 itemsSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     delete returnedObject.__v
-    delete returnedObject._id
   }
 })
 
 // Esquema de epicas
 
 export const epicasSchema = new Schema({
-  id: { type: String, required: true },
+  _id: { type: String, required: true },
   imagePath: { type: String, required: true },
   TypeCard: { type: String, required: true },
   Name: { type: String, required: true },
@@ -84,12 +81,11 @@ export const epicasSchema = new Schema({
 epicasSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     delete returnedObject.__v
-    delete returnedObject._id
   }
 })
 
 export const weaponsSchema = new Schema({
-  id: { type: String, required: true },
+  _id: { type: String, required: true },
   imagePath: { type: String, required: true },
   TypeCard: { type: String, required: true },
   Name: { type: String, required: true },
@@ -105,6 +101,5 @@ export const weaponsSchema = new Schema({
 weaponsSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     delete returnedObject.__v
-    delete returnedObject._id
   }
 })
