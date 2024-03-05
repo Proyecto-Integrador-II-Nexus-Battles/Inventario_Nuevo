@@ -1,0 +1,49 @@
+
+###
+POST http://localhost:9000/Hero
+Content-Type: application/json
+
+
+{
+    "_id":"H0012",
+    "imagePath":"desconocida",
+    "TypeCard":"Hero",
+    "Power":22,
+    "Live":22,
+    "Defense":22,
+    "DamageSides":22,
+    "AttackBase":22,
+    "AttackSides":22,
+    "Subtype":"Especializado",
+    "TypeH": "guerrero",
+    "Name":"Moros"
+} 
+
+
+
+###"
+GET http://localhost:9000/Hero/
+
+###
+GET http://localhost:9000/Hero/H0012
+
+###
+PUT http://localhost:9000/Hero/H0012
+{
+    "_id":"H0012",
+    "imagePath":"desconocida",
+    "TypeCard":"Hero",
+    "Power":22,
+    "Live":22,
+    "Defense":22,
+    "DamageSides":22,
+    "AttackBase":22,
+    "AttackSides":22,
+    "Subtype":"Especializado",
+    "TypeH": "guerrero",
+    "Name":"Morosszsssss"
+} 
+
+###
+DELETE http://localhost:9000/Hero/H0012
+
