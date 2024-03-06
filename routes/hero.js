@@ -32,21 +32,21 @@ router.get("/Hero/:_id", (req, res) => {
 });
 
 //Update hero
-router.put("/Hero/:_id", (req, res) => {
+router.put("/Hero/:id", (req, res) => {
     //dentro de {iran los campos que se modificaran}
-    const { nombre } = req.body;
+    const { id } = req.params;
+    const { Name } = req.body;
     heroSchema
-    .updateOne({_id: id}, {$set:{nombre/*campos a modificar separados por coma*/ }})
+    .updateOne({_id: id}, {$set:{Name/*campos a modificar separados por coma*/ }})   
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
 });
 
 //DELETE hero
-router.delete("/Hero/:_id", (req, res) => {
-    //dentro de {iran los campos que se modificaran}
-    const { ud } = req.param;
+router.delete("/Hero/:id", (req, res) => {
+    const { id } = req.params;
     heroSchema
-    .remove({_id: id}, {$set:{nombre/*campos a modificar separados por coma*/ }})
+    .deleteOne({_id: id})
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
 });
