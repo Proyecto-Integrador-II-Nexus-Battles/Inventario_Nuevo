@@ -4,7 +4,7 @@ require("dotenv").config();
 const heroRoutes = require("./routes/hero");
 
 const app = express();
-const port =  process.env.PORT || 9000;
+const port =  process.env.PORT || 5000;
 
 //middleware
 app.use(express.json());

@@ -27,23 +27,14 @@ GET http://localhost:9000/Hero/
 ###
 GET http://localhost:9000/Hero/H0012
 
-###
-PUT http://localhost:9000/Hero/H0012
+######
+PUT http://localhost:5000/Hero/1
+Content-Type: application/json
+
 {
-    "_id":"H0012",
-    "imagePath":"desconocida",
-    "TypeCard":"Hero",
-    "Power":22,
-    "Live":22,
-    "Defense":22,
-    "DamageSides":22,
-    "AttackBase":22,
-    "AttackSides":22,
-    "Subtype":"Especializado",
-    "TypeH": "guerrero",
-    "Name":"Morosszsssss"
+    "Name":"MOROCHO"
 } 
 
 ###
-DELETE http://localhost:9000/Hero/H0012
+DELETE http://localhost:5000/Hero/1
 

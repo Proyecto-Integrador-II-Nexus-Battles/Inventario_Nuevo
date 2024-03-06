@@ -8,7 +8,7 @@ const router = express.Router();
 router.post("/Hero", (req, res) => {
     const hero = heroSchema(req.body);
     console.log(req.body);
-    hero
+    hero 
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
@@ -31,7 +31,7 @@ router.get("/Hero/:_id", (req, res) => {
     .catch((error) => res.json({message: error}));
 });
 
-//Update hero
+//Update hero   
 router.put("/Hero/:id", (req, res) => {
     //dentro de {iran los campos que se modificaran}
     const { id } = req.params;
