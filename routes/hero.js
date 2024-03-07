@@ -1,5 +1,6 @@
 const express = require("express");
 const heroSchema = require ("../Models/hero");
+const itemsSchema = require ("../Models/items");
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.post("/Hero", (req, res) => {
 });
 
 //GET ALL DATA
-router.get("/Hero", (req, res) => {
+router.get("/Heros", (req, res) => {
     heroSchema
     .find()
     .then((data) => res.json(data))
@@ -47,6 +48,15 @@ router.delete("/Hero/:id", (req, res) => {
     const { id } = req.params;
     heroSchema
     .deleteOne({_id: id})
+    .then((data) => res.json(data))
+    .catch((error) => res.json({message: error}));
+});
+
+
+//GET ALL DATA
+router.get("/Items", (req, res) => {
+    itemsSchema
+    .find()
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
 });

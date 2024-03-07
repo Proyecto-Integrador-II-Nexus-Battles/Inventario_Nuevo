@@ -46,12 +46,18 @@ const heroSchema = mongoose.Schema({
     TypeH: {
         type: String, 
         required: true
-    }
-    ,
+    },
     Name: {
         type: String, 
         required: true
     } 
 })
 
-module.exports = mongoose.model('Hero', heroSchema, 'Hero');
+
+
+
+
+
+
+
+module.exports = mongoose.model('Hero', heroSchema, "Heros")
