@@ -17,6 +17,10 @@ npm i mongoose
 npm i dotenv
 	me permite crear una variable de ambiente customisada para un extra de seguridad en las credenciales para el acceso al servidor.
 
+npm cors
+    permitira que otras webs puedan usar mi api
+    
+
 Se aclara que para las pruebas locales de los endpoints se utilizo el pluggin de vs code "REST Client"
 
 Actualmente solo existen schemas y endpoints para la coleccion de heroes, falta crear las de las demas colecciones
