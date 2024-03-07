@@ -29,3 +29,4 @@ const armorSchema = mongoose.Schema({
         required: true 
     }
 })
+module.exports = mongoose.model('armor', armorSchema, "Armors")

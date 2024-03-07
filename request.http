@@ -22,7 +22,7 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:5000/Items/
+GET http://localhost:5000/Epics/
 
 ###
 GET http://localhost:5000/Hero/H0012

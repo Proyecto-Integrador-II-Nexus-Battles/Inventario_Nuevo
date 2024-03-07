@@ -73,3 +73,5 @@ const epicasSchema = mongoose.Schema({
         Type: String
     }
 })
+
+module.exports = mongoose.model('Talents', epicasSchema, "Talents")

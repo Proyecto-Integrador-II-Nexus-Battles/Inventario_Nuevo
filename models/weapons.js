@@ -51,3 +51,5 @@ const weaponsSchema = mongoose.Schema({
         default: 0 
     }
 })
+
+module.exports = mongoose.model('Weapon', weaponsSchema, "Weapons")

@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const heroRoutes = require("./routes/hero");
 const itemsRoutes = require("./routes/items");
+const weaponsRoutes = require("./routes/weapons");
+const epicsRoutes = require("./routes/epics");
+const armorsRoutes = require("./routes/armors");
 const cors = require('cors')
 
 const app = express(); 
@@ -14,6 +17,10 @@ app.use(cors())
 app.use(express.json());
 app.use(heroRoutes);
 app.use(itemsRoutes);
+app.use(epicsRoutes);
+app.use(weaponsRoutes);
+app.use(armorsRoutes);
+
 
 //permite la consulta desde cualquier dominio
 

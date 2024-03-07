@@ -1,6 +1,5 @@
 const express = require("express");
-const heroSchema = require ("../Models/hero");
-const itemsSchema = require ("../Models/items");
+const heroSchema = require ("../models/hero");
 
 const router = express.Router();
 
@@ -53,12 +52,6 @@ router.delete("/Hero/:id", (req, res) => {
 });
 
 
-//GET ALL DATA
-router.get("/Items", (req, res) => {
-    itemsSchema
-    .find()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({message: error}));
-});
+
 
 module.exports = router;
