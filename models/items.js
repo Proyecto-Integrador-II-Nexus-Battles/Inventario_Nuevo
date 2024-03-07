@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const itemsSchema = mongoose.Schema({
     _id: { 
-        type: String, required: true
+        type: String, 
+        required: true
     },
     imagePath: { 
         type: String, 
@@ -31,32 +32,26 @@ const itemsSchema = mongoose.Schema({
     //No obligatorios
     DamageBuff: { 
         type: Number, 
-    
-        default: 0 
+    default: 0 
     },
     EnemyDamageNerf: { 
         type: String, 
-        
         default: null 
     },
-    RounTimer: { 
+    RoundTimer: { 
         type: Number, 
-        
         default: 0 
     },
     DamageXBuster: {
         type: Number,
-        
         default: 1
     },
     Rounds: {
         type: Number,
-        
         default: 0
     },
     LiveNerf: {
         type: Number,
-        
         default: 0
     }
 })

@@ -27,17 +27,14 @@ const weaponsSchema = mongoose.Schema({
     //no obligatorios
     AttackBuff: { 
         type: Number, 
-        
         default: 0 
     },
     DamageBuff: { 
         type: Number, 
-        
         default: 0 
     },
     DefenseBuff: { 
         type: Number, 
-        
         default: 0 
     },
     EnemyDamageNerf: { 
@@ -52,4 +49,4 @@ const weaponsSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Weapon', weaponsSchema, "Weapons")
+module.exports = mongoose.model('Weapons', weaponsSchema, "Weapons")

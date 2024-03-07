@@ -1,8 +1,7 @@
 
 ###
-POST http://localhost:5000/Hero
+POST http://localhost:5000/Heros
 Content-Type: application/json
-
 
 {
     "_id":"H0012",
@@ -20,15 +19,14 @@ Content-Type: application/json
 } 
 
 
-
 ###
 GET http://localhost:5000/Epics/
 
 ###
-GET http://localhost:5000/Hero/H0012
+GET http://localhost:5000/Heros/H0012
 
-######
-PUT http://localhost:5000/Hero/1
+###
+PUT http://localhost:5000/Items/H0012
 Content-Type: application/json
 
 {
