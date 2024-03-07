@@ -2,7 +2,8 @@
   "name": "nodejs_mongodb_api",
   "version": "1.0.0",
   "description": "",
-  "main": "indexjs",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon index.js",
     "lint": "eslint ."

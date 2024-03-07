@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const heroRoutes = require("./routes/hero");
 
-const app = express();
+const app = express(); 
 const port =  process.env.PORT || 5000;
 
 //middleware
@@ -13,6 +13,8 @@ app.use(express.json());
 app.use(heroRoutes);
 
 //permite la consulta desde cualquier dominio
+
+
 
 //PARA LAS OSLICITUDES
 //CUANDO SOLICITEN LA RUTA , QUIERO QUE RESOPNDA UN TEXTO QUE DIGA PONG
