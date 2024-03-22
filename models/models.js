@@ -1,16 +1,24 @@
-import mongoose, { model } from 'mongoose'
-import { armorSchema, epicasSchema, heroesSchema, itemsSchema, weaponsSchema } from '../schemas/cards.js'
-const uri = 'mongodb+srv://dbShaj:4xAsYguGPdiU9EPv@cluster0.4jaifwg.mongodb.net/pruebasDB?retryWrites=true&w=majority&appName=Cluster0'
+import { heroes, armors, items, epics, weapons, mibanco } from './database.js'
 
-mongoose.connect(uri)
-  .then(() => console.log('Conectado a MONGODB'))
-  .catch((error) => console.error(error))
-
-const heroes = model('cards_heroes', heroesSchema)
-const armors = model('cards_armors', armorSchema)
-const items = model('cards_items', itemsSchema)
-const epics = model('cards_epics', epicasSchema)
-const weapons = model('cards_weapons', weaponsSchema)
+async function shopCart (id) { // ! PROVICIONAL
+  const response = await fetch('http://localhost:3000/movies/getCards', { // Ruta para carrito de compras
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id })
+  })
+  console.log('despues del fetch')
+  const cards = await response.json()
+  return cards
+}
+async function auction (id) { // ! PROVICIONAL
+  const response = await fetch('http://localhost:3000/movies/getCards', { // Ruta para subasta
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id })
+  })
+  const cards = await response.json()
+  return cards
+}
 
 // Función para encontrar todas las cartas
 async function findCards () {
@@ -43,7 +51,7 @@ async function findCards () {
 }
 
 async function obtenerPreciosAPI () {
-  const req = await fetch('http://localhost:3000/vitrina/getPrices')
+  const req = await fetch('http://gateway.thenexusbattlesii.online:5000/vitrina/getPrices')
   const precios = req.json()
 
   return precios
@@ -75,13 +83,16 @@ async function obtenerCardsConPrecios () {
 
 // Clase para el modelo de la carta
 export class CardModel {
-  static async getAll (id) {
+  // ? INVENTARIO
+  static async getAll (IDs) {
     let cards = await findCards()
-    cards = cards.filter(card => {
-      return (
-        (!id || card._id.toLowerCase() === id.toLowerCase())
-      )
-    })
+    if (IDs) {
+      cards = cards.filter(card => {
+        return (
+          IDs.includes(card.id)
+        )
+      })
+    }
     return cards // Devolver todas las cartas
   }
 
@@ -93,5 +104,31 @@ export class CardModel {
       .catch(error => {
         console.error('Error al obtener pruebas con precios actualizados:', error)
       })
+  }
+
+  // ? MI BANCO
+
+  static async addBankCard ({ cardID, quantity, userID }) {
+    try {
+      // eslint-disable-next-line new-cap
+      const newCard = new mibanco({
+        userID,
+        cardID,
+        quantity
+      })
+      await newCard.save()
+      return newCard
+    } catch (error) {
+      console.error('Error al agregar carta:', error)
+      throw error
+    }
+  }
+
+  static async getBankCard ({ id }) { //! PROVICIONAL
+    console.log('model')
+    const cardShopCart = await shopCart(id)
+    const cardAuction = await auction(id)
+    const allCards = [...cardShopCart, ...cardAuction]
+    return allCards
   }
 }
