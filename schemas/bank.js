@@ -1,9 +1,9 @@
 import { Schema } from 'mongoose'
 
 export const miBancoSchema = new Schema({
-  userID: { type: String, required: true },
-  cardID: { type: String, required: true },
-  quantity: { type: String, required: true }
+  CARTA_ID: { type: String, required: true },
+  CANTIDAD: { type: Number, required: true },
+  ID_USUARIO: { type: Number, required: true }
 }, { timestamps: true, collection: 'miBanco' })
 
 miBancoSchema.set('toJSON', {

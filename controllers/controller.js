@@ -15,9 +15,12 @@ export class cardsController {
 
   static async addBankCard (req, res) {
     try {
-      const { userID, cardID, quantity } = req.body
-      console.log(userID, cardID, quantity)
-      await CardModel.addBankCard({ cardID, quantity, userID })
+      const { cartas } = req.body
+      console.log(cartas[0].ID_USUARIO)
+      for (const carta of cartas) {
+        const { ID_USUARIO, CARTA_ID, CANTIDAD } = carta
+        await CardModel.addBankCard({ ID_USUARIO, CARTA_ID, CANTIDAD })
+      }
       res.status(200).json({ success: true, message: 'Carta agregada exitosamente al banco.' })
     } catch (error) {
       res.status(500).json({ success: false, error: 'Error al agregar la carta al banco.' })

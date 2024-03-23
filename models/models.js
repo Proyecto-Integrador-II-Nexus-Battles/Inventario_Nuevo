@@ -108,13 +108,14 @@ export class CardModel {
 
   // ? MI BANCO
 
-  static async addBankCard ({ cardID, quantity, userID }) {
+  static async addBankCard ({ CARTA_ID, CANTIDAD, ID_USUARIO }) {
     try {
+      console.log('MODEL', CARTA_ID, CANTIDAD, ID_USUARIO)
       // eslint-disable-next-line new-cap
       const newCard = new mibanco({
-        userID,
-        cardID,
-        quantity
+        ID_USUARIO,
+        CARTA_ID,
+        CANTIDAD
       })
       await newCard.save()
       return newCard
