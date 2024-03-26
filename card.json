@@ -1,0 +1,66 @@
+[
+    {
+        "_id": "A#0001",
+        "imagePath": "http://images:8080/images/A#0001.jpg",
+        "TypeCard": "armor",
+        "Name": "Cedric's Armor",
+        "Type": "armor",
+        "Subtype": "armor",
+        "DefenseBuff": 20
+    },
+    {
+        "_id": "H#0001",
+        "imagePath": "http://images:8080/images/H#0001.jpg",
+        "TypeCard": "heroe",
+        "Power": 30,
+        "Live": 50,
+        "Defense": 15,
+        "DamageSides": 12,
+        "AttackBase": 10,
+        "AttackSides": 8,
+        "Subtype": "heroe",
+        "Type": "heroe",
+        "Name": "Cedric"
+    },
+
+    {
+        "_id": "I#0001",
+        "imagePath": "http://images:8080/images/I#0001.jpg",
+        "TypeCard": "item",
+        "Name": "Sword",
+        "Type": "item",
+        "Subtype": "arm",
+        "Description": "A sword that can be used to attack enemies",
+        "DamageBuff": 15,
+        "EnemyDamageNerf": 2,
+        "RounTimer": 2
+    },
+    {
+        "_id": "E#0001",
+        "imagePath": "http://images:8080/images/E#0001.jpg",
+        "TypeCard": "armor",
+        "Name": "Epic Attack",
+        "Type": "epic",
+        "Subtype": "epic",
+        "EspecialDescriptionBuff": "Increases the attack of the hero by 5 points",
+        "NormalLiveBuff": 10,
+        "EspecialDamageBuff": 5,
+        "NormalDamageBuff": 0,
+        "NormalDescriptionDebuff": null,
+        "EnemyDamageNerf": null,
+        "RounTimer": 0
+    },
+    {
+        "_id": "W#0001",
+        "imagePath": "http://images:8080/images/W#0001.jpg",
+        "TypeCard": "weapon",
+        "Name": "Spear",
+        "Type": "item",
+        "Subtype": "weapon",
+        "AttackBuff": 10,
+        "DamageBuff": 5,
+        "DefenseBuff": 0,
+        "EnemyDamageNerf": 0,
+        "Rounds": 0
+    }
+]

@@ -1,6 +1,6 @@
 import mongoose, { model } from 'mongoose'
 import { armorSchema, epicasSchema, heroesSchema, itemsSchema, weaponsSchema } from '../schemas/cards.js'
-const uri = 'mongodb+srv://dbShaj:4xAsYguGPdiU9EPv@cluster0.4jaifwg.mongodb.net/pruebasDB?retryWrites=true&w=majority&appName=Cluster0'
+const uri = 'mongodb+srv://jreyess11:Mncdm2024.@cluster0.ztojprw.mongodb.net/'
 
 mongoose.connect(uri)
   .then(() => console.log('Conectado a MONGODB'))
@@ -64,7 +64,6 @@ async function obtenerCardsConPrecios () {
         price: precios[prueba._id] // Actualizar el precio
       }
     })
-
     // Devolver el nuevo JSON con los precios actualizados
     return pruebasActualizadas
   } catch (error) {
@@ -75,23 +74,39 @@ async function obtenerCardsConPrecios () {
 
 // Clase para el modelo de la carta
 export class CardModel {
-  static async getAll (id) {
+  static async getAll () {
     let cards = await findCards()
-    cards = cards.filter(card => {
-      return (
-        (!id || card._id.toLowerCase() === id.toLowerCase())
-      )
-    })
     return cards // Devolver todas las cartas
   }
 
-  static async getEcommerceCard () {
-    return obtenerCardsConPrecios()
-      .then(cards => {
-        return cards.filter(card => card.OnSale)
+  static async getEcommerceCard(id) {
+    try {
+      let cardsWithPrices = await obtenerCardsConPrecios();
+      cardsWithPrices = cardsWithPrices.filter(card => {
+        return (
+          (!id || card._id.toLowerCase() === id.toLowerCase())
+        )
       })
-      .catch(error => {
-        console.error('Error al obtener pruebas con precios actualizados:', error)
-      })
+      return cardsWithPrices;
+    } catch (error) {
+      console.error('Error al obtener cartas con precios actualizados:', error);
+      throw error;
+    }
   }
+
+  static async getCardsbyID(ids) {
+    try {
+      let cardsWithPrices = await obtenerCardsConPrecios();
+      cardsWithPrices = cardsWithPrices.filter(card => {
+        return (
+          (!ids || ids.includes(card._id))
+        )
+      })
+      return cardsWithPrices;
+    } catch (error) {
+      console.error('Error al obtener cartas con precios:', error);
+      throw error;
+    }
+  }
+
 }
