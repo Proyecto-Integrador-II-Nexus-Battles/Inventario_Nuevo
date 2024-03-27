@@ -111,7 +111,6 @@ export class CardModel {
   static async filterCards(Type, minPrice, maxPrice, sale, sortOrder) {
     try {
       let cardsWithPrices = await obtenerCardsConPrecios();
-      console.log(typeof Type, Type, typeof minPrice, minPrice, typeof maxPrice, maxPrice, typeof sale, sale, typeof sortOrder, sortOrder);
       if (typeof sale === 'string') {
         sale = sale.toLowerCase() === 'true'
       }
