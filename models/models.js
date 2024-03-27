@@ -45,7 +45,6 @@ async function findCards () {
 async function obtenerPreciosAPI () {
   const req = await fetch('http://localhost:3000/vitrina/getPrices')
   const precios = req.json()
-
   return precios
 }
 
@@ -105,6 +104,34 @@ export class CardModel {
       return cardsWithPrices;
     } catch (error) {
       console.error('Error al obtener cartas con precios:', error);
+      throw error;
+    }
+  }
+
+  static async filterCards(Type, minPrice, maxPrice, sale, sortOrder) {
+    try {
+      let cardsWithPrices = await obtenerCardsConPrecios();
+      console.log(typeof Type, Type, typeof minPrice, minPrice, typeof maxPrice, maxPrice, typeof sale, sale, typeof sortOrder, sortOrder);
+      if (typeof sale === 'string') {
+        sale = sale.toLowerCase() === 'true'
+      }
+      if (sortOrder === 'asc') {
+        cardsWithPrices.sort((a, b) => a.price - b.price)
+      } else if (sortOrder === 'desc') {
+        cardsWithPrices.sort((a, b) => b.price - a.price)
+      }
+
+      cardsWithPrices = cardsWithPrices.filter(card => {
+        return (
+          (!Type || card.TypeCard.toLowerCase() === Type.toLowerCase()) &&
+          (!minPrice || card.price >= minPrice) &&
+          (!maxPrice || card.price <= maxPrice) &&
+          (!sale || card.Sale === sale)
+        )
+      })
+      return cardsWithPrices;
+    } catch (error) {
+      console.error('Error al filtrar cartas con precios:', error);
       throw error;
     }
   }
