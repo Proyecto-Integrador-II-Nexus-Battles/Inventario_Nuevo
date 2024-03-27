@@ -1,25 +1,5 @@
 import { heroes, armors, items, epics, weapons, mibanco } from './database.js'
 
-async function shopCart (id) { // ! PROVICIONAL
-  const response = await fetch('http://localhost:3000/movies/getCards', { // Ruta para carrito de compras
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id })
-  })
-  console.log('despues del fetch')
-  const cards = await response.json()
-  return cards
-}
-async function auction (id) { // ! PROVICIONAL
-  const response = await fetch('http://localhost:3000/movies/getCards', { // Ruta para subasta
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id })
-  })
-  const cards = await response.json()
-  return cards
-}
-
 // Función para encontrar todas las cartas
 async function findCards () {
   try {
@@ -83,9 +63,9 @@ async function obtenerCardsConPrecios () {
 
 // Clase para el modelo de la carta
 export class CardModel {
-  // ? INVENTARIO
   static async getAll (IDs) {
     let cards = await findCards()
+    console.log(IDs)
     if (IDs) {
       cards = cards.filter(card => {
         return (
@@ -108,28 +88,59 @@ export class CardModel {
 
   // ? MI BANCO
 
+  static async getBankCard ({ id }) {
+    console.log(id)
+    let cardsIDs = []
+    const response = await mibanco.find(
+      { ID_USUARIO: id }
+    )
+    cardsIDs = response.map(IDs => {
+      return {
+        CARTA_ID: IDs.CARTA_ID,
+        CANTIDAD: IDs.CANTIDAD
+      }
+    })
+    console.log(cardsIDs)
+    return cardsIDs
+  }
+
   static async addBankCard ({ CARTA_ID, CANTIDAD, ID_USUARIO }) {
     try {
-      console.log('MODEL', CARTA_ID, CANTIDAD, ID_USUARIO)
-      // eslint-disable-next-line new-cap
-      const newCard = new mibanco({
-        ID_USUARIO,
-        CARTA_ID,
-        CANTIDAD
-      })
-      await newCard.save()
-      return newCard
+      // Buscar si ya existe una entrada para el usuario y la carta proporcionados
+      const existingCard = await mibanco.findOne({ CARTA_ID, ID_USUARIO })
+
+      if (existingCard) {
+        // Si ya existe una entrada, actualizamos la cantidad
+        existingCard.CANTIDAD += CANTIDAD
+        await existingCard.save() // Guardar los cambios en la base de datos
+        return existingCard
+      } else {
+        // Si no existe una entrada, creamos una nueva
+        // eslint-disable-next-line new-cap
+        const newCard = new mibanco({
+          CARTA_ID,
+          CANTIDAD,
+          ID_USUARIO
+        })
+        await newCard.save() // Guardar la nueva entrada en la base de datos
+        return newCard
+      }
     } catch (error) {
       console.error('Error al agregar carta:', error)
       throw error
     }
   }
 
-  static async getBankCard ({ id }) { //! PROVICIONAL
-    console.log('model')
-    const cardShopCart = await shopCart(id)
-    const cardAuction = await auction(id)
-    const allCards = [...cardShopCart, ...cardAuction]
-    return allCards
+  static async deleteBankCard ({ CARTA_ID, ID_USUARIO }) {
+    try {
+      const resultado = await mibanco.findOneAndDelete({ ID_USUARIO, CARTA_ID })
+      if (resultado) {
+        return { success: true, message: 'Documento eliminado' }
+      } else {
+        return { success: false, message: 'No se encontró ningún documento para eliminar' }
+      }
+    } catch (error) {
+      console.error('Error al eliminar el documento:', error)
+    }
   }
 }

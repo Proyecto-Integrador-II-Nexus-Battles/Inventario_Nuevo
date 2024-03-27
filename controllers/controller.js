@@ -27,10 +27,32 @@ export class cardsController {
     }
   }
 
-  static async getBankCard (req, res) { // ! PROVICIONAL
+  static async deleteBankCard (req, res) {
+    try {
+      const { data } = req.body
+      await CardModel.deleteBankCard(data)
+      res.status(200).json({ success: true, message: 'Carta eliminada exitosamente del banco.' })
+    } catch (error) {
+      res.status(500).json({ success: false, error: 'Error al agregar la carta al banco.' })
+    }
+  }
+
+  static async getBankCard (req, res) {
     const { id } = req.body
-    const IDs = await CardModel.getBankCard({ id })
-    const cards = await CardModel.getAll(IDs)
+    const response = await CardModel.getBankCard({ id })
+    const IDs = []
+    response.forEach(e => {
+      IDs.push(e.CARTA_ID)
+    })
+    let cards = await CardModel.getAll(IDs)
+    cards = cards.map(card => {
+      const cantidad = response.find(e => e.CARTA_ID === card.id).CANTIDAD
+
+      return {
+        carta: card,
+        cantidad: cantidad || 0
+      }
+    })
     res.json(cards)
   }
 }
