@@ -1,0 +1,62 @@
+[
+    {
+        "_id": "A#0001",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A#0001.jpg",
+        "TypeCard": "Armor",
+        "Name": "Pesada",
+        "Type": "Guerrero",
+        "Subtype": "Tanque",
+        "DefenseBuff": 4,
+        "OnSale": true
+    },
+    {
+        "_id": "A#0002",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A#0002.jpg",
+        "TypeCard": "Armor",
+        "Name": "Media",
+        "Type": "Guerrero",
+        "Subtype": "Armas",
+        "DefenseBuff": 3,
+        "OnSale": true
+    },
+    {
+        "_id": "A#0003",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A#0003.jpg",
+        "TypeCard": "Armor",
+        "Name": "Tela",
+        "Type": "Mago",
+        "Subtype": "Fuego",
+        "DefenseBuff": 1,
+        "OnSale": true
+    },
+    {
+        "_id": "A#0004",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A#0004.jpg",
+        "TypeCard": "Armor",
+        "Name": "Tela",
+        "Type": "Mago",
+        "Subtype": "Hielo",
+        "DefenseBuff": 1,
+        "OnSale": true
+    },
+    {
+        "_id": "A#0005",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A#0005.jpg",
+        "TypeCard": "Armor",
+        "Name": "Media liviana",
+        "Type": "Picaro",
+        "Subtype": "Veneno",
+        "DefenseBuff": 2,
+        "OnSale": true
+    },
+    {
+        "_id": "A#0006",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A#0006.jpg",
+        "TypeCard": "Armor",
+        "Name": "Media liviana",
+        "Type": "Picaro",
+        "Subtype": "Machete",
+        "DefenseBuff": 2,
+        "OnSale": true
+    }
+]

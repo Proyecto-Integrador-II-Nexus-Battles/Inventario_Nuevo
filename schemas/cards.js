@@ -51,7 +51,7 @@ export const itemsSchema = new Schema({
   Description: { type: String, required: true },
   DamageBuff: { type: Number, required: false, default: 0 },
   EnemyDamageNerf: { type: String, required: false, default: null },
-  RounTimer: { type: Number, required: false, default: 0 }
+  RoundTimer: { type: Number, required: false, default: 0 }
 }, { timestamps: true })
 
 itemsSchema.set('toJSON', {
@@ -75,7 +75,7 @@ export const epicasSchema = new Schema({
   NormalDamageBuff: { type: Number, required: true, default: 0 },
   NormalDescriptionDebuff: { type: String, required: false, default: null },
   EnemyDamageNerf: { type: String, required: false, default: null },
-  RounTimer: { type: Number, required: false, default: 0 }
+  RoundTimer: { type: Number, required: false, default: 0 }
 }, { timestamps: true })
 
 epicasSchema.set('toJSON', {
