@@ -1,7 +1,7 @@
 [
     {
         "_id": "H#0001",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H#0001.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H0001.jpg",
         "TypeCard": "Hero",
         "Power": 1,
         "Live": 16,
@@ -12,11 +12,13 @@
         "Subtype": "Machete",
         "Type": "Picaro",
         "Name": "Ion daga solar",
-        "OnSale": true
+        "Description":"Entrenado en el arte de la magia elemental, es un personaje que puede causar gran daño al oponente. ",
+        "OnSale": true,
+        "Sale": false
     },
     {
         "_id": "H#0002",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H#0002.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H0002.jpg",
         "TypeCard": "Hero",
         "Power": 1,
         "Live": 16,
@@ -24,14 +26,16 @@
         "DamageSides": 8,
         "AttackBase": 10,
         "AttackSides": 10,
-        "Name": "Sombra del Cuervo",
+        "Name": "Nebula Toxica",
         "Subtype": "Veneno",
         "Type": "Picaro",
-        "OnSale": true
+        "Description": "Entrenado en alquimia puede causar gran daño al adversario afectando sus habilidades y reduciendo la posibilidad de que puedan acertar un golpe. ",
+        "OnSale": true,
+        "Sale": false
     },
     {
         "_id": "H#0003",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H#0003.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H0003.jpg",
         "TypeCard": "Hero",
         "Power": 1,
         "Live": 20,
@@ -42,11 +46,13 @@
         "Name": "Frostfang",
         "Subtype": "Hielo",
         "Type": "Mago",
-        "OnSale": true
+        "Description": "Contra parte del Mago Fuego, se especializa en disminuir el poder del enemigo para conseguir una fría victoria",
+        "OnSale": true,
+        "Sale": false
     },
     {
         "_id": "H#0004",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H#0004.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H0004.jpg",
         "TypeCard": "Hero",
         "Power": 1,
         "Live": 20,
@@ -57,11 +63,13 @@
         "Name": "Zephyr Shadowblade",
         "Subtype": "Fuego",
         "Type": "Mago",
-        "OnSale": true
+        "Description":"Entrenado en el arte de la magia elemental, es un personaje que puede causar gran daño al oponente. ",
+        "OnSale": true,
+        "Sale": false
     },
     {
         "_id": "H#0005",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H#0005.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H0005.jpg",
         "TypeCard": "Hero",
         "Power": 1,
         "Live": 24,
@@ -69,14 +77,16 @@
         "DamageSides": 4,
         "AttackBase": 10,
         "AttackSides": 6,
-        "Name": "cedric",
+        "Name": "Cedric",
         "Subtype": "Armas",
         "Type": "Guerrero",
-        "OnSale": true
+        "Description": "Su especialidad es causar todo el daño posible sacrificando su defensa.",
+        "OnSale": true,
+        "Sale": false
     },
     {
         "_id": "H#0006",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H#0006.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/H0006.jpg",
         "TypeCard": "Hero",
         "Power": 1,
         "Live": 24,
@@ -87,6 +97,8 @@
         "Name": "Tiberius Steelguard",
         "Subtype": "Tanque",
         "Type": "Guerrero",
-        "OnSale": true
+        "Description":"Este personaje se caracteriza por aguantar en gran medida los ataques del contrario, pero el daño que causa es reducido. ",
+        "OnSale": true,
+        "Sale": false
     }
 ]

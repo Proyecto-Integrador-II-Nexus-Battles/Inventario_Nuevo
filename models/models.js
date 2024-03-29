@@ -1,8 +1,7 @@
 import mongoose, { model } from 'mongoose'
 import { armorSchema, epicasSchema, heroesSchema, itemsSchema, weaponsSchema } from '../schemas/cards.js'
-const uri = 'mongodb+srv://jreyess11:Mncdm2024.@cluster0.ztojprw.mongodb.net/'
 
-mongoose.connect(uri)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Conectado a MONGODB'))
   .catch((error) => console.error(error))
 
@@ -43,7 +42,7 @@ async function findCards () {
 }
 
 async function obtenerPreciosAPI () {
-  const req = await fetch('http://localhost:3000/vitrina/getPrices')
+  const req = await fetch(`http://${process.env.V_HOST}:${process.env.V_PORT}/vitrina/getPrices`)
   const precios = req.json()
   return precios
 }
