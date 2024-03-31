@@ -1,10 +1,9 @@
 import mongoose from 'mongoose'
 import { armorSchema, epicasSchema, heroesSchema, itemsSchema, weaponsSchema } from '../schemas/cards.js'
 import { miBancoSchema } from '../schemas/bank.js'
-import { MONGO_URI } from '../config.js'
+import { MONGO_URI, uri } from '../config.js'
 
-// const uri = 'mongodb+srv://dbShaj:4xAsYguGPdiU9EPv@cluster0.4jaifwg.mongodb.net/inventory?retryWrites=true&w=majority&appName=Cluster0'
-mongoose.connect(MONGO_URI)
+mongoose.connect(uri)
   .then(() => console.log('Conectado a MONGODB'))
   .catch((error) => console.error(error))
 
