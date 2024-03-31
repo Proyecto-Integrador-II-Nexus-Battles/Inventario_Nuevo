@@ -10,7 +10,7 @@ import { MONGO_URI, V_HOST, V_PORT } from "../config.js";
 import fs from "fs";
 
 mongoose
-  .connect(MONGO_URI)
+  .connect(process.env.MONGO_URI1)
   .then(() => console.log("Conectado a MONGODB"))
   .catch((error) => console.error(error));
 
@@ -82,7 +82,7 @@ async function findCards() {
 }
 
 async function obtenerPreciosAPI() {
-  const req = await fetch(`${V_HOST}:${V_PORT}/vitrina/getPrices`);
+  const req = await fetch(`http://${V_HOST}:${V_PORT}/vitrina/getPrices`);
   const precios = req.json();
   return precios;
 }
