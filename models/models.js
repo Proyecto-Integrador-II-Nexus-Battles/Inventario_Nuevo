@@ -1,5 +1,5 @@
-import { heroes, armors, items, epics, weapons, mibanco } from './database.js'
-import { HOST, PORT } from '../config.js'
+import { heroes, armors, items, epics, weapons, mibanco } from "./database.js";
+import { HOST, PORT } from "../config.js";
 import mongoose, { model } from "mongoose";
 import fs from "fs";
 
@@ -94,20 +94,14 @@ async function obtenerCardsConPrecios() {
 
 // Clase para el modelo de la carta
 export class CardModel {
-  static async getAll (IDs) {
-    let cards = await findCards()
-    console.log(IDs)
-    if (IDs) {
-      cards = cards.filter(card => {
-        return (
-          IDs.includes(card.id)
-        )
-      })
-    }
-    return cards // Devolver todas las cartas
-  }
-  static async getAll() {
+  static async getAll(IDs) {
     let cards = await findCards();
+    console.log(IDs);
+    if (IDs) {
+      cards = cards.filter((card) => {
+        return IDs.includes(card.id);
+      });
+    }
     return cards; // Devolver todas las cartas
   }
 
@@ -166,59 +160,63 @@ export class CardModel {
 
   // ? MI BANCO
 
-  static async getBankCard ({ id }) {
-    console.log(id)
-    let cardsIDs = []
-    const response = await mibanco.find(
-      { ID_USUARIO: id }
-    )
-    cardsIDs = response.map(IDs => {
+  static async getBankCard({ id }) {
+    console.log(id);
+    let cardsIDs = [];
+    const response = await mibanco.find({ ID_USUARIO: id });
+    cardsIDs = response.map((IDs) => {
       return {
         CARTA_ID: IDs.CARTA_ID,
-        CANTIDAD: IDs.CANTIDAD
-      }
-    })
-    console.log(cardsIDs)
-    return cardsIDs
+        CANTIDAD: IDs.CANTIDAD,
+      };
+    });
+    console.log(cardsIDs);
+    return cardsIDs;
   }
 
-  static async addBankCard ({ CARTA_ID, CANTIDAD, ID_USUARIO }) {
+  static async addBankCard({ CARTA_ID, CANTIDAD, ID_USUARIO }) {
     try {
       // Buscar si ya existe una entrada para el usuario y la carta proporcionados
-      const existingCard = await mibanco.findOne({ CARTA_ID, ID_USUARIO })
+      const existingCard = await mibanco.findOne({ CARTA_ID, ID_USUARIO });
 
       if (existingCard) {
         // Si ya existe una entrada, actualizamos la cantidad
-        existingCard.CANTIDAD += CANTIDAD
-        await existingCard.save() // Guardar los cambios en la base de datos
-        return existingCard
+        existingCard.CANTIDAD += CANTIDAD;
+        await existingCard.save(); // Guardar los cambios en la base de datos
+        return existingCard;
       } else {
         // Si no existe una entrada, creamos una nueva
         // eslint-disable-next-line new-cap
         const newCard = new mibanco({
           CARTA_ID,
           CANTIDAD,
-          ID_USUARIO
-        })
-        await newCard.save() // Guardar la nueva entrada en la base de datos
-        return newCard
+          ID_USUARIO,
+        });
+        await newCard.save(); // Guardar la nueva entrada en la base de datos
+        return newCard;
       }
     } catch (error) {
-      console.error('Error al agregar carta:', error)
-      throw error
+      console.error("Error al agregar carta:", error);
+      throw error;
     }
   }
 
-  static async deleteBankCard ({ CARTA_ID, ID_USUARIO }) {
+  static async deleteBankCard({ CARTA_ID, ID_USUARIO }) {
     try {
-      const resultado = await mibanco.findOneAndDelete({ ID_USUARIO, CARTA_ID })
+      const resultado = await mibanco.findOneAndDelete({
+        ID_USUARIO,
+        CARTA_ID,
+      });
       if (resultado) {
-        return { success: true, message: 'Documento eliminado' }
+        return { success: true, message: "Documento eliminado" };
       } else {
-        return { success: false, message: 'No se encontró ningún documento para eliminar' }
+        return {
+          success: false,
+          message: "No se encontró ningún documento para eliminar",
+        };
       }
     } catch (error) {
-      console.error('Error al eliminar el documento:', error)
+      console.error("Error al eliminar el documento:", error);
     }
   }
 }
