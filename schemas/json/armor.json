@@ -1,0 +1,74 @@
+[
+    {
+        "_id": "A#0001",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0001.jpg",
+        "TypeCard": "Armor",
+        "Name": "Pesada",
+        "Type": "Guerrero",
+        "Subtype": "Tanque",
+        "DefenseBuff": 4,
+        "Description":"El guerrero tanque, inquebrantable en la línea de batalla, se enfunda en una armadura imponente que fusiona la robustez con la elegancia. ",
+        "Sale": false,
+        "OnSale": true
+    },
+    {
+        "_id": "A#0002",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0002.jpg",
+        "TypeCard": "Armor",
+        "Name": "Media",
+        "Type": "Guerrero",
+        "Subtype": "Armas",
+        "DefenseBuff": 3,
+        "Sale": false,
+        "Description":"El guerro de armas, con su inquebrantable media que fusiona la estética victoriana con tecnología avanzada, impone fuerza y ataque a su oponente",
+        "OnSale": true
+    },
+    {
+        "_id": "A#0003",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0003.jpg",
+        "TypeCard": "Armor",
+        "Name": "Tela",
+        "Type": "Mago",
+        "Subtype": "Fuego",
+        "DefenseBuff": 1,
+        "Sale": false,
+        "Description": "Confeccionada con las llamas mismas, su tejido parece arder sin consumirse.Cuando el mago se envuelve en esta capa, se convierte en un ser de poder inmenso.",
+        "OnSale": true
+    },
+    {
+        "_id": "A#0004",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0004.jpg",
+        "TypeCard": "Armor",
+        "Name": "Tela",
+        "Type": "Mago",
+        "Subtype": "Hielo",
+        "DefenseBuff": 1,
+        "Sale": false,
+        "Description":"Prenda de vestir única, tejida con hebras de frío y encantamientos ancestrales. Su propósito es proteger al mago capibara mientras canaliza su poder gélido.",
+        "OnSale": true
+    },
+    {
+        "_id": "A#0005",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0005.jpg",
+        "TypeCard": "Armor",
+        "Name": "Media liviana",
+        "Type": "Picaro",
+        "Subtype": "Veneno",
+        "DefenseBuff": 2,
+        "Sale": false,
+        "Description":"Prenda ligera y sigilosa diseñada específicamente para los astutos pícaros. Su tejido está impregnado con un veneno letal extraído de las criaturas más venenosas del mundo. ",
+        "OnSale": true
+    },
+    {
+        "_id": "A#0006",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0006.jpg",
+        "TypeCard": "Armor",
+        "Name": "Media liviana",
+        "Type": "Picaro",
+        "Subtype": "Machete",
+        "DefenseBuff": 2,
+        "Sale": false,
+        "Description": "Prenda ligero pero resistente, similar a una malla de nanofibras. Se adapta perfectamente al cuerpo del pícaro, proporcionando movilidad sin restricciones.",
+        "OnSale": true
+    }
+]

@@ -2,7 +2,6 @@ import { Router } from 'express'
 import { cardsController } from '../controllers/controller.js'
 
 export const cardsRoutes = Router()
-
 // ? <--INVENTARIO-->
 cardsRoutes.get('/getAllCards', cardsController.getAll) // Devuelve todas las catas //*(requerido en inventario)
 cardsRoutes.get('/getEcommerceCard', cardsController.getEcommerceCard) // Devuelve todas las catas en venta con sus respectivos pecios //*(requerido en Ecommerce)
@@ -13,3 +12,6 @@ cardsRoutes.post('/getCardsByIDs', cardsController.getAll) // Devuelve los atibu
 cardsRoutes.post('/add-cards', cardsController.addBankCard) // Agrega cartas a la base de datos de invetario //*(requerido en miBanco, carritoCompras y subasta)
 cardsRoutes.post('/getBankCards', cardsController.getBankCard) // Devuelve todas las cartas del usuario //*(requerido en miBanco)
 cardsRoutes.delete('/delete-card', cardsController.deleteBankCard) // Elimina las cartas de mi banco
+cardsRoutes.get('/getEcommerceCard/:id', cardsController.getEcommerceCard)
+cardsRoutes.post('/getCardsbyID', cardsController.getCardsbyID)
+cardsRoutes.get('/cards', cardsController.filterCards) 
