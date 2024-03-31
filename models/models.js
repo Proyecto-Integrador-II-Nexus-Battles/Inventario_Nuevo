@@ -1,4 +1,5 @@
 import { heroes, armors, items, epics, weapons, mibanco } from './database.js'
+import { HOST, PORT } from '../config.js'
 
 // Función para encontrar todas las cartas
 async function findCards () {
@@ -31,7 +32,7 @@ async function findCards () {
 }
 
 async function obtenerPreciosAPI () {
-  const req = await fetch('http://gateway.thenexusbattlesii.online:5000/vitrina/getPrices')
+  const req = await fetch(`${HOST}:${PORT}/vitrina/getPrices`)
   const precios = req.json()
 
   return precios

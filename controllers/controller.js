@@ -16,7 +16,7 @@ export class cardsController {
   static async addBankCard (req, res) {
     try {
       const { cartas } = req.body
-      console.log(cartas[0].ID_USUARIO)
+      console.log(cartas)
       for (const carta of cartas) {
         const { ID_USUARIO, CARTA_ID, CANTIDAD } = carta
         await CardModel.addBankCard({ ID_USUARIO, CARTA_ID, CANTIDAD })
