@@ -6,7 +6,7 @@ import {
   itemsSchema,
   weaponsSchema,
 } from "../schemas/cards.js";
-import { MONGO_URI, V_HOST, V_PORT } from "../config.js";
+import { MONGO_URI, HOST, PORT } from "../config.js";
 import fs from "fs";
 
 mongoose
@@ -82,7 +82,7 @@ async function findCards() {
 }
 
 async function obtenerPreciosAPI() {
-  const req = await fetch(`${V_HOST}:${V_PORT}/vitrina/getPrices`);
+  const req = await fetch(`${HOST}:${PORT}/vitrina/getPrices`);
   const precios = req.json();
   return precios;
 }
