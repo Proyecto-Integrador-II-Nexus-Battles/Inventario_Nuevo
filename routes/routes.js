@@ -3,9 +3,8 @@ import { cardsController } from "../controllers/controller.js";
 
 export const cardsRoutes = Router();
 // ? <--INVENTARIO-->
-cardsRoutes.get("/getAllCards", cardsController.getAllEcom); // Devuelve todas las catas //*(requerido en inventario)
+cardsRoutes.get("/getAllCards", cardsController.getAll); // Devuelve todas las catas //*(requerido en inventario)
 cardsRoutes.get("/getEcommerceCard", cardsController.getEcommerceCard); // Devuelve todas las catas en venta con sus respectivos pecios //*(requerido en Ecommerce)
-
 // ?  <--MI BANCO-->
 
 cardsRoutes.post("/getCardsByIDs", cardsController.getAll); // Devuelve los atibutos de las catas por los IDs ingresados //*(Requerido en miBanco y carritoDeCompra)

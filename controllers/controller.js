@@ -8,11 +8,6 @@ export class cardsController {
     res.json(cards);
   }
 
-  static async getAllEcom(req, res) {
-    const cards = await CardModel.getAllEcom();
-    res.json(cards);
-  }
-
   static async getCardsbyID(req, res) {
     const ids = req.body;
     const cards = await CardModel.getCardsbyID(ids);
