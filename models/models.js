@@ -105,6 +105,11 @@ export class CardModel {
     return cards; // Devolver todas las cartas
   }
 
+  static async getAllEcom() {
+    let cards = await findCards();
+    return cards; // Devolver todas las cartas
+  }
+
   static async getEcommerceCard(id) {
     try {
       let cardsWithPrices = await obtenerCardsConPrecios();
