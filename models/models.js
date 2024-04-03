@@ -120,6 +120,9 @@ export class CardModel {
 
   static async getCardsbyID(ids) {
     try {
+      if (Object.keys(ids).length === 0) {
+        return [];
+      }
       let cardsWithPrices = await obtenerCardsConPrecios();
       cardsWithPrices = cardsWithPrices.filter((card) => {
         return !ids || ids.includes(card._id);
@@ -160,10 +163,9 @@ export class CardModel {
 
   // ? MI BANCO
 
-  static async getBankCard({ id }) {
-    console.log(id);
+  static async getBankCard({ id: IdUsuario }) {
     let cardsIDs = [];
-    const response = await mibanco.find({ ID_USUARIO: id });
+    const response = await mibanco.find({ ID_USUARIO: IdUsuario });
     cardsIDs = response.map((IDs) => {
       return {
         CARTA_ID: IDs.CARTA_ID,

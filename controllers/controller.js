@@ -67,8 +67,8 @@ export class cardsController {
   }
 
   static async getBankCard(req, res) {
-    const { id } = req.body;
-    const response = await CardModel.getBankCard({ id });
+    const { IdUsuario } = req.body;
+    const response = await CardModel.getBankCard({ IdUsuario });
     const IDs = [];
     response.forEach((e) => {
       IDs.push(e.CARTA_ID);
