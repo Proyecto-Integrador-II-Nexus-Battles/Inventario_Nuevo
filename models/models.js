@@ -7,21 +7,21 @@ async function insertIfNotExists(model, filePath) {
     const jsonData = fs.readFileSync(filePath, "utf8");
     const data = JSON.parse(jsonData);
     data.forEach((element) => {
-      model.findById(element._id, (err, result) => {
-        if (err) {
-          console.error("Error finding documents:", err);
-        }
+      model.findOne({ _id: element._id }).then((result) => {
         if (!result) {
-          model.create(element, (err) => {
-            if (err) {
-              console.error("Error inserting documents:", err);
-            }
+          model.create(element).then((result) => {
+            console.log("Documento insertado", result);
           });
         }
         if (result) {
-          model.updateOne({ _id: element._id }, element).then((res) => {
-            console.log(res);
-          });
+          model
+            .updateOne({ _id: element._id }, element)
+            .then((result) => {
+              console.log("Documento actualizado", result);
+            })
+            .catch((error) => {
+              console.error("Error al actualizar documento", error);
+            });
         }
       });
     });
