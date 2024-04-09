@@ -1,7 +1,7 @@
 [
     {
         "_id": "E#0001",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/E0001.jpg",
+        "imagePath": "https://158.247.123.215:8081/images/E0001.jpg",
         "TypeCard": "Talent",
         "Name": "Golpe de defensa",
         "Type": "Guerrero",
@@ -18,7 +18,7 @@
     },
     {
         "_id": "E#0002",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/E0002.jpg",
+        "imagePath": "https://158.247.123.215:8081/images/E0002.jpg",
         "TypeCard": "Talent",
         "Name": "Segundo impulso",
         "Type": "Guerrero",
@@ -35,7 +35,7 @@
     },
     {
         "_id": "E#0003",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/E0003.jpg",
+        "imagePath": "https://158.247.123.215:8081/images/E0003.jpg",
         "TypeCard": "Talent",
         "Name": "Frio concentrado",
         "Type": "Mago",
@@ -52,7 +52,7 @@
     },
     {
         "_id": "E#0004",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/E0004.jpg",
+        "imagePath": "https://158.247.123.215:8081/images/E0004.jpg",
         "TypeCard": "Talent",
         "Name": "Luz cegadora",
         "Type": "Mago",
@@ -69,7 +69,7 @@
     },
     {
         "_id": "E#0005",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/E0005.jpg",
+        "imagePath": "https://158.247.123.215:8081/images/E0005.jpg",
         "TypeCard": "Talent",
         "Name": "Toma y lleva",
         "Type": "Picaro",
@@ -87,7 +87,7 @@
     },
     {
         "_id": "E#0006",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/E0006.jpg",
+        "imagePath": "https://158.247.123.215:8081/images/E0006.jpg",
         "TypeCard": "Talent",
         "Name": "Intimidación sangrienta",
         "Type": "Picaro",
