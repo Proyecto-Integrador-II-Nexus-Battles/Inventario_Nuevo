@@ -1,4 +1,4 @@
-import { heroes, armors, items, epics, weapons, mibanco } from "./database.js";
+import { heroes, armors, items, epics, weapons, mibanco , creditos} from "./database.js";
 import { HOST, PORT } from "../config.js";
 import mongoose, { model } from "mongoose";
 import fs from "fs";
@@ -220,5 +220,15 @@ export class CardModel {
     } catch (error) {
       console.error("Error al eliminar el documento:", error);
     }
+  }
+}
+
+
+// ? Creditos
+export class CreditosModel {
+  static async getCreditos({ ID_USUARIO }) {
+    const response = await creditos.findOne({ ID_USUARIO });
+    console.log(response);
+    return response;
   }
 }

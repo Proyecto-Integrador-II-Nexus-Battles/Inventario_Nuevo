@@ -14,3 +14,6 @@ cardsRoutes.delete("/delete-card", cardsController.deleteBankCard); // Elimina l
 cardsRoutes.get("/getEcommerceCard/:id", cardsController.getEcommerceCard);
 cardsRoutes.post("/getCardsbyID", cardsController.getCardsbyID);
 cardsRoutes.get("/cards", cardsController.filterCards);
+
+
+// ? <--Creditos-->

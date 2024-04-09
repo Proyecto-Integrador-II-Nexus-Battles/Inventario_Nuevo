@@ -1,4 +1,5 @@
 import { CardModel } from "../models/models.js";
+import { CreditosModel } from "../models/models.js";
 
 export class cardsController {
   static async getAll(req, res) {
@@ -85,3 +86,19 @@ export class cardsController {
     res.json(cards);
   }
 }
+
+
+export class creditosController {
+  static async addCredits(req, res) {
+    const { ID_USUARIO, CANTIDAD } = req.body;
+    const credit = await CardModel.addCredits({ ID_USUARIO, CANTIDAD });
+    res.json(credit);
+  }
+
+  static async getCredits(req, res) {
+    const { ID_USUARIO } = req.body;
+    const credit = await CreditosModel.getCreditos({ ID_USUARIO });
+    res.json(credit);
+  }
+}
+
