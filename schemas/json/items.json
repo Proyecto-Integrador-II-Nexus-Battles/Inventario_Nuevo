@@ -1,7 +1,7 @@
 [
     {
         "_id": "I#0001",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/I0001.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/I0001.jpg",
         "TypeCard": "Item",
         "Name": "Pinchos de escudo",
         "Type": "Guerrero",
@@ -15,7 +15,7 @@
     },
     {
         "_id": "I#0002",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/I0002.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/I0002.jpg",
         "TypeCard": "Item",
         "Name": "Empuñadura de furia",
         "Type": "Guerrero",
@@ -30,7 +30,7 @@
     },
     {
         "_id": "I#0003",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/I0003.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/I0003.jpg",
         "TypeCard": "Item",
         "Name": "Anillo para piro-exploción",
         "Type": "Mago",
@@ -44,7 +44,7 @@
     },
     {
         "_id": "I#0004",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/I0004.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/I0004.jpg",
         "TypeCard": "Item",
         "Name": "Libro de la ventisca helada",
         "Type": "Mago",
@@ -58,7 +58,7 @@
     },
     {
         "_id": "I#0005",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/I0005.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/I0005.jpg",
         "TypeCard": "Item",
         "Name": "Veneno lacerante",
         "Type": "Picaro",
@@ -72,7 +72,7 @@
     },
     {
         "_id": "I#0006",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/I0006.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/I0006.jpg",
         "TypeCard": "Item",
         "Name": "Mancuerna yugular",
         "Type": "Guerrero",

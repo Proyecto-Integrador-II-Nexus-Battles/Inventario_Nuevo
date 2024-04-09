@@ -1,7 +1,7 @@
 [
     {
         "_id": "A#0001",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0001.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/A0001.jpg",
         "TypeCard": "Armor",
         "Name": "Pesada",
         "Type": "Guerrero",
@@ -13,7 +13,7 @@
     },
     {
         "_id": "A#0002",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0002.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/A0002.jpg",
         "TypeCard": "Armor",
         "Name": "Media",
         "Type": "Guerrero",
@@ -25,7 +25,7 @@
     },
     {
         "_id": "A#0003",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0003.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/A0003.jpg",
         "TypeCard": "Armor",
         "Name": "Tela",
         "Type": "Mago",
@@ -37,7 +37,7 @@
     },
     {
         "_id": "A#0004",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0004.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/A0004.jpg",
         "TypeCard": "Armor",
         "Name": "Tela",
         "Type": "Mago",
@@ -49,7 +49,7 @@
     },
     {
         "_id": "A#0005",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0005.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/A0005.jpg",
         "TypeCard": "Armor",
         "Name": "Media liviana",
         "Type": "Picaro",
@@ -61,7 +61,7 @@
     },
     {
         "_id": "A#0006",
-        "imagePath": "https://tigre.thenexusbattlesii.online:8080/images/A0006.jpg",
+        "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/A0006.jpg",
         "TypeCard": "Armor",
         "Name": "Media liviana",
         "Type": "Picaro",

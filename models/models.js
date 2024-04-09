@@ -1,20 +1,30 @@
 import { heroes, armors, items, epics, weapons, mibanco } from "./database.js";
 import { HOST, PORT } from "../config.js";
-import mongoose, { model } from "mongoose";
 import fs from "fs";
 
 async function insertIfNotExists(model, filePath) {
   try {
     const jsonData = fs.readFileSync(filePath, "utf8");
     const data = JSON.parse(jsonData);
-    const count = await model.countDocuments();
-
-    if (count !== data.length) {
-      const result = await model.insertMany(data);
-      console.log("Documents inserted successfully:", result);
-    } else {
-      console.log("Collection already has documents. Skipping insertion.");
-    }
+    data.forEach((element) => {
+      model.findById(element._id, (err, result) => {
+        if (err) {
+          console.error("Error finding documents:", err);
+        }
+        if (!result) {
+          model.create(element, (err) => {
+            if (err) {
+              console.error("Error inserting documents:", err);
+            }
+          });
+        }
+        if (result) {
+          model.updateOne({ _id: element._id }, element).then((res) => {
+            console.log(res);
+          });
+        }
+      });
+    });
   } catch (error) {
     console.error("Error inserting documents:", error);
   }
