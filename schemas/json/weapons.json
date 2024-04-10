@@ -1,7 +1,7 @@
 [
   {
     "_id": "W#0001",
-    "imagePath": "http://158.247.123.215:8081/images/W0001.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0001.jpg",
     "TypeCard": "Weapon",
     "Name": "Espada de una mano",
     "Type": "Guerrero",
@@ -17,7 +17,7 @@
   },
   {
     "_id": "W#0002",
-    "imagePath": "http://158.247.123.215:8081/images/W0002.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0002.jpg",
     "TypeCard": "Weapon",
     "Name": "Espada de dos manos",
     "Type": "Guerrero",
@@ -33,7 +33,7 @@
   },
   {
     "_id": "W#0003",
-    "imagePath": "http://158.247.123.215:8081/images/W0003.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0003.jpg",
     "TypeCard": "Weapon",
     "Name": "Escudo de dragón",
     "Type": "Guerrero",
@@ -49,7 +49,7 @@
   },
   {
     "_id": "W#0004",
-    "imagePath": "http://158.247.123.215:8081/images/W0004.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0004.jpg",
     "TypeCard": "Weapon",
     "Name": "Piedra de afilar",
     "Type": "Guerrero",
@@ -65,7 +65,7 @@
   },
   {
     "_id": "W#0005",
-    "imagePath": "http://158.247.123.215:8081/images/W0005.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0005.jpg",
     "TypeCard": "Weapon",
     "Name": "Orbe de manos ardientes",
     "Type": "Mago",
@@ -81,7 +81,7 @@
   },
   {
     "_id": "W#0006",
-    "imagePath": "http://158.247.123.215:8081/images/W0006.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0006.jpg",
     "TypeCard": "Weapon",
     "Name": "Fuego fatuo",
     "Type": "Mago",
@@ -97,7 +97,7 @@
   },
   {
     "_id": "W#0007",
-    "imagePath": "http://158.247.123.215:8081/images/W0007.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0007.jpg",
     "TypeCard": "Weapon",
     "Name": "Báculo de permafrost",
     "Type": "Mago",
@@ -113,7 +113,7 @@
   },
   {
     "_id": "W#0008",
-    "imagePath": "http://158.247.123.215:8081/images/W0008.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0008.jpg",
     "TypeCard": "Weapon",
     "Name": "Venas heladas",
     "Type": "Mago",
@@ -129,7 +129,7 @@
   },
   {
     "_id": "W#0009",
-    "imagePath": "http://158.247.123.215:8081/images/W0009.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0009.jpg",
     "TypeCard": "Weapon",
     "Name": "Daga purulenta",
     "Type": "Picaro",
@@ -145,7 +145,7 @@
   },
   {
     "_id": "W#0010",
-    "imagePath": "http://158.247.123.215:8081/images/W0010.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0010.jpg",
     "TypeCard": "Weapon",
     "Name": "Vision borrosa",
     "Type": "Picaro",
@@ -161,7 +161,7 @@
   },
   {
     "_id": "W#0011",
-    "imagePath": "http://158.247.123.215:8081/images/W0011.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0011.jpg",
     "TypeCard": "Weapon",
     "Name": "Machete vendito",
     "Type": "Picaro",
@@ -177,7 +177,7 @@
   },
   {
     "_id": "W#0012",
-    "imagePath": "http://158.247.123.215:8081/images/W0012.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/W0012.jpg",
     "TypeCard": "Weapon",
     "Name": "Cierra sangrienta",
     "Type": "Picaro",

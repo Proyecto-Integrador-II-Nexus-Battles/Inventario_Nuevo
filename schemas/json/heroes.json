@@ -1,7 +1,7 @@
 [
   {
     "_id": "H#0001",
-    "imagePath": "http://158.247.123.215:8081/images/H0001.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/H0001.jpg",
     "TypeCard": "Hero",
     "Power": 1,
     "Live": 16,
@@ -18,7 +18,7 @@
   },
   {
     "_id": "H#0002",
-    "imagePath": "http://158.247.123.215:8081/images/H0002.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/H0002.jpg",
     "TypeCard": "Hero",
     "Power": 1,
     "Live": 16,
@@ -35,7 +35,7 @@
   },
   {
     "_id": "H#0003",
-    "imagePath": "http://158.247.123.215:8081/images/H0003.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/H0003.jpg",
     "TypeCard": "Hero",
     "Power": 1,
     "Live": 20,
@@ -52,7 +52,7 @@
   },
   {
     "_id": "H#0004",
-    "imagePath": "http://158.247.123.215:8081/images/H0004.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/H0004.jpg",
     "TypeCard": "Hero",
     "Power": 1,
     "Live": 20,
@@ -69,7 +69,7 @@
   },
   {
     "_id": "H#0005",
-    "imagePath": "http://158.247.123.215:8081/images/H0005.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/H0005.jpg",
     "TypeCard": "Hero",
     "Power": 1,
     "Live": 24,
@@ -86,7 +86,7 @@
   },
   {
     "_id": "H#0006",
-    "imagePath": "http://158.247.123.215:8081/images/H0006.jpg",
+    "imagePath": "https://tigre.thenexusbattlesii.online:8081/images/H0006.jpg",
     "TypeCard": "Hero",
     "Power": 1,
     "Live": 24,
