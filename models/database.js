@@ -10,6 +10,7 @@ import { miBancoSchema } from "../schemas/bank.js";
 import { creditosSchema } from "../schemas/creditos.js";
 import { MONGO_URI } from "../config.js";
 
+
 mongoose
   .connect(MONGO_URI)
   .then(() => console.log("Conectado a MONGODB"))

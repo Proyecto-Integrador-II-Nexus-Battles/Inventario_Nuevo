@@ -63,6 +63,8 @@ async function findCards() {
     throw error; // Relanzar el error para que sea manejado por el código que llama
   }
 }
+
+
 async function obtenerPreciosAPI() {
   const req = await fetch(`${HOST}:${PORT}/vitrina/getPrices`);
   const precios = req.json();
@@ -105,6 +107,8 @@ export class CardModel {
     return cards; // Devolver todas las cartas
   }
 
+  
+
   static async getEcommerceCard(id) {
     try {
       let cardsWithPrices = await obtenerCardsConPrecios();
@@ -117,6 +121,7 @@ export class CardModel {
       throw error;
     }
   }
+  
 
   static async getCardsbyID(ids) {
     try {
@@ -226,9 +231,57 @@ export class CardModel {
 
 // ? Creditos
 export class CreditosModel {
-  static async getCreditos({ ID_USUARIO }) {
-    const response = await creditos.findOne({ ID_USUARIO });
+  static async getCreditos(IdUsuario) {
+    console.log(IdUsuario);
+    const response = await creditos.findOne({ ID_USUARIO : IdUsuario});
     console.log(response);
     return response;
+  }
+
+  static async addCreditos({ ID_USUARIO, CANTIDAD }) {
+    try {
+      
+      const existingCreditos = await creditos.findOne({ ID_USUARIO });
+
+      if (existingCreditos) {
+        existingCreditos.CANTIDAD += CANTIDAD;
+        await existingCreditos.save();
+        return existingCreditos;
+      } else {
+        const newCreditos = new creditos({
+          ID_USUARIO,
+          CANTIDAD,
+        });
+        await newCreditos.save();
+        return newCreditos;
+      }
+    } catch (error) {
+      console.error("Error al agregar créditos:", error);
+      throw error;
+    }
+  }
+
+  static async deleteCreditos({ ID_USUARIO, CANTIDAD }) {
+    try {
+      const resultado = await creditos.findOne({ID_USUARIO });
+      if (resultado) {
+        if(resultado.CANTIDAD == 0){
+          resultado.CANTIDAD += CANTIDAD;
+          await resultado.save();
+          return resultado;
+        }else{
+          resultado.CANTIDAD -= CANTIDAD;
+          await resultado.save();
+          return resultado;
+        }
+      } else {
+        return {
+          success: false,
+          message: "No se encontró ningún crédito para eliminar",
+        };
+      }
+    } catch (error) {
+      console.error("Error al eliminar créditos:", error);
+    }
   }
 }

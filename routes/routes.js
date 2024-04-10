@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { cardsController } from "../controllers/controller.js";
+import { cardsController,creditosController } from "../controllers/controller.js";
 
 export const cardsRoutes = Router();
 // ? <--INVENTARIO-->
@@ -15,5 +15,7 @@ cardsRoutes.get("/getEcommerceCard/:id", cardsController.getEcommerceCard);
 cardsRoutes.post("/getCardsbyID", cardsController.getCardsbyID);
 cardsRoutes.get("/cards", cardsController.filterCards);
 
-
-// ? <--Creditos-->
+// ?  <--CREDITOS-->
+cardsRoutes.post("/add-creditos", creditosController.addCredits);
+cardsRoutes.get("/get-creditos/:id", creditosController.getCredits);
+cardsRoutes.post("/delete-creditos", creditosController.deleteCredits);
