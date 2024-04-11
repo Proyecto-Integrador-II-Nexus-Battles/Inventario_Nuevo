@@ -120,11 +120,8 @@ export class creditosController {
   static async deleteCredits(req, res) {
     try{
       const { ID_USUARIO, CANTIDAD } = req.body;
-      await CreditosModel.deleteCreditos({ ID_USUARIO, CANTIDAD });
-      res.status(200).json({
-        success: true,
-        message: "Creditos eliminados exitosamente.",
-      });
+      const deleteCred = await CreditosModel.deleteCreditos({ ID_USUARIO, CANTIDAD });
+      res.status(200).json(deleteCred);  
     } catch (error) {
       res
         .status(500)

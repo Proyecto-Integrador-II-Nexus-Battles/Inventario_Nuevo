@@ -66,6 +66,7 @@ async function findCards() {
 
 
 async function obtenerPreciosAPI() {
+  console.log(`${HOST}:${PORT}/vitrina/getPrices`);
   const req = await fetch(`${HOST}:${PORT}/vitrina/getPrices`);
   const precios = req.json();
   return precios;
@@ -263,16 +264,18 @@ export class CreditosModel {
 
   static async deleteCreditos({ ID_USUARIO, CANTIDAD }) {
     try {
-      const resultado = await creditos.findOne({ID_USUARIO });
+      const resultado = await creditos.findOne({ID_USUARIO});
       if (resultado) {
-        if(resultado.CANTIDAD == 0){
-          resultado.CANTIDAD += CANTIDAD;
-          await resultado.save();
-          return resultado;
+        if(resultado.CANTIDAD  <= 0){
+          return {
+            success: false,
+            message: "No se encontró ningún crédito para eliminar, el suario tiene 0 créditos",}
         }else{
           resultado.CANTIDAD -= CANTIDAD;
           await resultado.save();
-          return resultado;
+          return {
+            success: true,
+            message: "Créditos eliminados exitosamente",}
         }
       } else {
         return {
