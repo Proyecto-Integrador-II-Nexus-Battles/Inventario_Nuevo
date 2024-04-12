@@ -68,6 +68,7 @@ export class cardsController {
 
   static async getBankCard(req, res) {
     const { IdUsuario } = req.body;
+    console.log(IdUsuario);
     const response = await CardModel.getBankCard({ IdUsuario });
     const IDs = [];
     response.forEach((e) => {
@@ -82,6 +83,7 @@ export class cardsController {
         cantidad: cantidad || 0,
       };
     });
+    console.log("Estas son las cartas del usuario:", cards);
     res.json(cards);
   }
 }
