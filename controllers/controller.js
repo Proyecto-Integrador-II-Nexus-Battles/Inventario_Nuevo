@@ -1,4 +1,5 @@
 import { CardModel } from "../models/models.js";
+import { CreditosModel } from "../models/models.js";
 
 export class cardsController {
   static async getAll(req, res) {
@@ -85,3 +86,48 @@ export class cardsController {
     res.json(cards);
   }
 }
+
+
+export class creditosController {
+
+  static async getCredits(req, res) {
+    const { id } = req.params;
+    const credit = await CreditosModel.getCreditos(id);
+    res.json(credit);
+  }
+
+  static async addCredits(req, res) {
+    try{
+      const { ID_USUARIO, CANTIDAD } = req.body;
+      console.log(ID_USUARIO, CANTIDAD);
+      await CreditosModel.addCreditos({ ID_USUARIO, CANTIDAD });
+      res.status(200).json({
+        success: true,
+        message: "Creditos agregados exitosamente.",
+      }
+
+      );
+    } catch (error) {
+      res
+        .status(500)
+        .json({ success: false, error: "Error al agregar los creditos." });
+    }
+    
+  }
+
+  
+
+  static async deleteCredits(req, res) {
+    try{
+      const { ID_USUARIO, CANTIDAD } = req.body;
+      const deleteCred = await CreditosModel.deleteCreditos({ ID_USUARIO, CANTIDAD });
+      res.status(200).json(deleteCred);  
+    } catch (error) {
+      res
+        .status(500)
+        .json({ success: false, error: "Error al eliminar los creditos." });
+    }
+  
+  }
+}
+
