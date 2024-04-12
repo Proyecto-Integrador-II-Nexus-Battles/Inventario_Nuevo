@@ -173,17 +173,22 @@ export class CardModel {
 
   // ? MI BANCO
 
-  static async getBankCard({ id: IdUsuario }) {
-    let cardsIDs = [];
-    const response = await mibanco.find({ ID_USUARIO: IdUsuario });
-    cardsIDs = response.map((IDs) => {
-      return {
-        CARTA_ID: IDs.CARTA_ID,
-        CANTIDAD: IDs.CANTIDAD,
-      };
-    });
-    console.log(cardsIDs);
-    return cardsIDs;
+  static async getBankCard({ IdUsuario }) {
+    try {
+      let cardsIDs = [];
+      const response = await mibanco.find({ ID_USUARIO: IdUsuario });
+      console.log(response);
+      cardsIDs = response.map((IDs) => {
+        return {
+          CARTA_ID: IDs.CARTA_ID,
+          CANTIDAD: IDs.CANTIDAD,
+        };
+      });
+      console.log(cardsIDs);
+      return cardsIDs;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   static async addBankCard({ CARTA_ID, CANTIDAD, ID_USUARIO }) {
