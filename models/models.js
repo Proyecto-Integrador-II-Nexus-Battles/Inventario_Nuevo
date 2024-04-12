@@ -1,4 +1,4 @@
-import { heroes, armors, items, epics, weapons, mibanco } from "./database.js";
+import { heroes, armors, items, epics, weapons, mibanco , creditos} from "./database.js";
 import { HOST, PORT } from "../config.js";
 import mongoose, { model } from "mongoose";
 import fs from "fs";
@@ -63,7 +63,10 @@ async function findCards() {
     throw error; // Relanzar el error para que sea manejado por el código que llama
   }
 }
+
+
 async function obtenerPreciosAPI() {
+  console.log(`${HOST}:${PORT}/vitrina/getPrices`);
   const req = await fetch(`${HOST}:${PORT}/vitrina/getPrices`);
   const precios = req.json();
   return precios;
@@ -105,6 +108,8 @@ export class CardModel {
     return cards; // Devolver todas las cartas
   }
 
+  
+
   static async getEcommerceCard(id) {
     try {
       let cardsWithPrices = await obtenerCardsConPrecios();
@@ -117,6 +122,7 @@ export class CardModel {
       throw error;
     }
   }
+  
 
   static async getCardsbyID(ids) {
     try {
@@ -219,6 +225,66 @@ export class CardModel {
       }
     } catch (error) {
       console.error("Error al eliminar el documento:", error);
+    }
+  }
+}
+
+
+// ? Creditos
+export class CreditosModel {
+  static async getCreditos(IdUsuario) {
+    console.log(IdUsuario);
+    const response = await creditos.findOne({ ID_USUARIO : IdUsuario});
+    console.log(response);
+    return response;
+  }
+
+  static async addCreditos({ ID_USUARIO, CANTIDAD }) {
+    try {
+      
+      const existingCreditos = await creditos.findOne({ ID_USUARIO });
+
+      if (existingCreditos) {
+        existingCreditos.CANTIDAD += CANTIDAD;
+        await existingCreditos.save();
+        return existingCreditos;
+      } else {
+        const newCreditos = new creditos({
+          ID_USUARIO,
+          CANTIDAD,
+        });
+        await newCreditos.save();
+        return newCreditos;
+      }
+    } catch (error) {
+      console.error("Error al agregar créditos:", error);
+      throw error;
+    }
+  }
+
+  static async deleteCreditos({ ID_USUARIO, CANTIDAD }) {
+    try {
+      const resultado = await creditos.findOne({ID_USUARIO});
+      if (resultado) {
+        if(resultado.CANTIDAD  <= 0){
+          return {
+            success: false,
+            message: "No se encontró ningún crédito para eliminar, el suario tiene 0 créditos",}
+        }else{
+          resultado.CANTIDAD -= CANTIDAD;
+          await resultado.save();
+          return {
+            success: true,
+            message: "Créditos eliminados exitosamente",}
+        }
+      } else {
+        return {
+          success: false,
+          message: "No se encontró ningún crédito para eliminar",
+        };
+      }
+    } catch (error) {
+      console.error("Error al eliminar créditos:", error);
     }
   }
 }

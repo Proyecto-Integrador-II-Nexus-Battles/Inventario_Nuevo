@@ -7,7 +7,9 @@ import {
   weaponsSchema,
 } from "../schemas/cards.js";
 import { miBancoSchema } from "../schemas/bank.js";
+import { creditosSchema } from "../schemas/creditos.js";
 import { MONGO_URI } from "../config.js";
+
 
 mongoose
   .connect(MONGO_URI)
@@ -20,3 +22,5 @@ export const items = mongoose.model("cards_items", itemsSchema);
 export const epics = mongoose.model("cards_epics", epicasSchema);
 export const weapons = mongoose.model("cards_weapons", weaponsSchema);
 export const mibanco = mongoose.model("miBanco", miBancoSchema);
+export const creditos = mongoose.model('creditos', creditosSchema);
+
