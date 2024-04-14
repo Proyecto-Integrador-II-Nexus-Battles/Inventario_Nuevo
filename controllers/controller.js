@@ -32,6 +32,24 @@ export class cardsController {
     res.json(cards)
   }
 
+  // ? INVENTARIO CRUD
+  static async modifyCard (req, res) {
+    try {
+      const { data } = req.body
+      console.log({ data })
+      await CardModel.modifyCards(data)
+      res.status(200).json({
+        success: true,
+        message: 'Carta modificada exitosamente.'
+      })
+    } catch (error) {
+      res
+        .status(500)
+        .json({ success: false, error: 'Error al modificar la carta.' })
+    }
+  }
+  // ? Mi Banco
+
   static async addBankCard (req, res) {
     try {
       const { cartas } = req.body

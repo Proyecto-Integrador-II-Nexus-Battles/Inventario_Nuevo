@@ -91,6 +91,16 @@ async function obtenerCardsConPrecios () {
   }
 }
 
+async function updateCards (collection, idCard, data) {
+  try {
+    // Utiliza un nuevo método para envolver la llamada a updateOne en una promesa
+    await collection.updateOne(idCard, data)
+    console.log('Documento actualizado exitosamente')
+  } catch (error) {
+    console.error('Error al actualizar el documento:', error)
+  }
+}
+
 // Clase para el modelo de la carta
 export class CardModel {
   static async getAll (IDs) {
@@ -157,6 +167,32 @@ export class CardModel {
     } catch (error) {
       console.error('Error al filtrar cartas con precios:', error)
       throw error
+    }
+  }
+
+  // ? CRUD INVENTARIO
+
+  static async modifyCards (data) {
+    try {
+      switch (data.TypeCard) {
+        case 'Hero':
+          await updateCards(heroes, { _id: data._id }, data)
+          break
+        case 'Armor':
+          await updateCards(armors, { _id: data._id }, data)
+          break
+        case 'Item':
+          await updateCards(items, { _id: data._id }, data)
+          break
+        case 'Epic':
+          await updateCards(epics, { _id: data._id }, data)
+          break
+        case 'Weapon':
+          await updateCards(weapons, { _id: data._id }, data)
+          break
+      }
+    } catch (error) {
+      console.error('Error al modificar cartas:', error)
     }
   }
 
