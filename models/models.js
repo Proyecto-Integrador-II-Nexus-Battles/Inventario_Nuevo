@@ -1,50 +1,49 @@
 import { heroes, armors, items, epics, weapons, mibanco } from './database.js'
+import fs from 'fs'
 import { HOST, PORT } from '../config.js'
-import mongoose, { model } from "mongoose";
-import fs from "fs";
 
-async function insertIfNotExists(model, filePath) {
+async function insertIfNotExists (model, filePath) {
   try {
-    const jsonData = fs.readFileSync(filePath, "utf8");
-    const data = JSON.parse(jsonData);
-    const count = await model.countDocuments();
+    const jsonData = fs.readFileSync(filePath, 'utf8')
+    const data = JSON.parse(jsonData)
+    const count = await model.countDocuments()
 
     if (count !== data.length) {
-      const result = await model.insertMany(data);
-      console.log("Documents inserted successfully:", result);
+      const result = await model.insertMany(data)
+      console.log('Documents inserted successfully:', result)
     } else {
-      console.log("Collection already has documents. Skipping insertion.");
+      console.log('Collection already has documents. Skipping insertion.')
     }
   } catch (error) {
-    console.error("Error inserting documents:", error);
+    console.error('Error inserting documents:', error)
   }
 }
 
-export async function databaseCheck() {
-  insertIfNotExists(heroes, "./schemas/json/heroes.json");
-  insertIfNotExists(armors, "./schemas/json/armor.json");
-  insertIfNotExists(items, "./schemas/json/items.json");
-  insertIfNotExists(epics, "./schemas/json/epics.json");
-  insertIfNotExists(weapons, "./schemas/json/weapons.json");
+export async function databaseCheck () {
+  insertIfNotExists(heroes, './schemas/json/heroes.json')
+  insertIfNotExists(armors, './schemas/json/armor.json')
+  insertIfNotExists(items, './schemas/json/items.json')
+  insertIfNotExists(epics, './schemas/json/epics.json')
+  insertIfNotExists(weapons, './schemas/json/weapons.json')
 }
 
 // Función para encontrar todas las cartas
-async function findCards() {
+async function findCards () {
   try {
     // Consultar todas las cartas de héroes
-    const cardsHeroes = await heroes.find();
+    const cardsHeroes = await heroes.find()
 
     // Consultar todas las cartas de armaduras
-    const cardsArmors = await armors.find();
+    const cardsArmors = await armors.find()
 
     // Consultar todas las cartas de items
-    const cardsItems = await items.find();
+    const cardsItems = await items.find()
 
     // Consultar todas las cartas de epics
-    const cardsEpics = await epics.find();
+    const cardsEpics = await epics.find()
 
     // Consultar todas las cartas de weapons
-    const cardsWeapons = await weapons.find();
+    const cardsWeapons = await weapons.find()
 
     // Combinar todas las cartas
     const allCards = [
@@ -52,43 +51,43 @@ async function findCards() {
       ...cardsArmors,
       ...cardsItems,
       ...cardsEpics,
-      ...cardsWeapons,
-    ];
+      ...cardsWeapons
+    ]
 
     // Devolver todas las cartas combinadas
-    return allCards;
+    return allCards
   } catch (error) {
     // Manejar cualquier error que ocurra durante la consulta
-    console.error("Error al encontrar cartas:", error);
-    throw error; // Relanzar el error para que sea manejado por el código que llama
+    console.error('Error al encontrar cartas:', error)
+    throw error // Relanzar el error para que sea manejado por el código que llama
   }
 }
-async function obtenerPreciosAPI() {
-  const req = await fetch(`${HOST}:${PORT}/vitrina/getPrices`);
-  const precios = req.json();
-  return precios;
+async function obtenerPreciosAPI () {
+  const req = await fetch(`${HOST}:${PORT}/vitrina/getPrices`)
+  const precios = req.json()
+  return precios
 }
 
-async function obtenerCardsConPrecios() {
+async function obtenerCardsConPrecios () {
   try {
     // Obtener los precios de la API
-    const precios = await obtenerPreciosAPI();
+    const precios = await obtenerPreciosAPI()
 
     // Obtener todos los documentos Prueba
-    const pruebas = await findCards();
+    const pruebas = await findCards()
 
     // Actualizar los precios en los documentos Prueba
     const pruebasActualizadas = pruebas.map((prueba) => {
       return {
         ...prueba.toObject(), // Convertir el documento Mongoose a un objeto plano
-        price: precios[prueba._id], // Actualizar el precio
-      };
-    });
+        price: precios[prueba._id] // Actualizar el precio
+      }
+    })
     // Devolver el nuevo JSON con los precios actualizados
-    return pruebasActualizadas;
+    return pruebasActualizadas
   } catch (error) {
-    console.error("Error al obtener pruebas con precios actualizados:", error);
-    throw error;
+    console.error('Error al obtener pruebas con precios actualizados:', error)
+    throw error
   }
 }
 
@@ -96,7 +95,6 @@ async function obtenerCardsConPrecios() {
 export class CardModel {
   static async getAll (IDs) {
     let cards = await findCards()
-    console.log(IDs)
     if (IDs) {
       cards = cards.filter(card => {
         return (
@@ -106,47 +104,48 @@ export class CardModel {
     }
     return cards // Devolver todas las cartas
   }
-  static async getAll() {
-    let cards = await findCards();
-    return cards; // Devolver todas las cartas
-  }
 
-  static async getEcommerceCard(id) {
+  // static async getAll () {
+  //   const cards = await findCards()
+  //   return cards // Devolver todas las cartas
+  // }
+
+  static async getEcommerceCard (id) {
     try {
-      let cardsWithPrices = await obtenerCardsConPrecios();
+      let cardsWithPrices = await obtenerCardsConPrecios()
       cardsWithPrices = cardsWithPrices.filter((card) => {
-        return !id || card._id.toLowerCase() === id.toLowerCase();
-      });
-      return cardsWithPrices;
+        return !id || card._id.toLowerCase() === id.toLowerCase()
+      })
+      return cardsWithPrices
     } catch (error) {
-      console.error("Error al obtener cartas con precios actualizados:", error);
-      throw error;
+      console.error('Error al obtener cartas con precios actualizados:', error)
+      throw error
     }
   }
 
-  static async getCardsbyID(ids) {
+  static async getCardsbyID (ids) {
     try {
-      let cardsWithPrices = await obtenerCardsConPrecios();
+      let cardsWithPrices = await obtenerCardsConPrecios()
       cardsWithPrices = cardsWithPrices.filter((card) => {
-        return !ids || ids.includes(card._id);
-      });
-      return cardsWithPrices;
+        return !ids || ids.includes(card._id)
+      })
+      return cardsWithPrices
     } catch (error) {
-      console.error("Error al obtener cartas con precios:", error);
-      throw error;
+      console.error('Error al obtener cartas con precios:', error)
+      throw error
     }
   }
 
-  static async filterCards(Type, minPrice, maxPrice, sale, sortOrder) {
+  static async filterCards (Type, minPrice, maxPrice, sale, sortOrder) {
     try {
-      let cardsWithPrices = await obtenerCardsConPrecios();
-      if (typeof sale === "string") {
-        sale = sale.toLowerCase() === "true";
+      let cardsWithPrices = await obtenerCardsConPrecios()
+      if (typeof sale === 'string') {
+        sale = sale.toLowerCase() === 'true'
       }
-      if (sortOrder === "asc") {
-        cardsWithPrices.sort((a, b) => a.price - b.price);
-      } else if (sortOrder === "desc") {
-        cardsWithPrices.sort((a, b) => b.price - a.price);
+      if (sortOrder === 'asc') {
+        cardsWithPrices.sort((a, b) => a.price - b.price)
+      } else if (sortOrder === 'desc') {
+        cardsWithPrices.sort((a, b) => b.price - a.price)
       }
 
       cardsWithPrices = cardsWithPrices.filter((card) => {
@@ -155,31 +154,36 @@ export class CardModel {
           (!minPrice || card.price >= minPrice) &&
           (!maxPrice || card.price <= maxPrice) &&
           (!sale || card.Sale === sale)
-        );
-      });
-      return cardsWithPrices;
+        )
+      })
+      return cardsWithPrices
     } catch (error) {
-      console.error("Error al filtrar cartas con precios:", error);
-      throw error;
+      console.error('Error al filtrar cartas con precios:', error)
+      throw error
     }
   }
 
   // ? MI BANCO
 
-  static async getBankCard ({ id }) {
-    console.log(id)
-    let cardsIDs = []
-    const response = await mibanco.find(
-      { ID_USUARIO: id }
-    )
-    cardsIDs = response.map(IDs => {
-      return {
-        CARTA_ID: IDs.CARTA_ID,
-        CANTIDAD: IDs.CANTIDAD
-      }
-    })
-    console.log(cardsIDs)
-    return cardsIDs
+  static async getBankCard ({ IdUsuario }) {
+    try {
+      console.log(IdUsuario)
+      let cardsIDs = []
+      const response = await mibanco.find(
+        { ID_USUARIO: IdUsuario }
+      )
+      console.log(response)
+      cardsIDs = response.map(IDs => {
+        return {
+          CARTA_ID: IDs.CARTA_ID,
+          CANTIDAD: IDs.CANTIDAD
+        }
+      })
+      console.log(cardsIDs)
+      return cardsIDs
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   static async addBankCard ({ CARTA_ID, CANTIDAD, ID_USUARIO }) {

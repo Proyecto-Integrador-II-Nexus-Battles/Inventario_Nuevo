@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 import { armorSchema, epicasSchema, heroesSchema, itemsSchema, weaponsSchema } from '../schemas/cards.js'
 import { miBancoSchema } from '../schemas/bank.js'
-import { MONGO_URI, uri } from '../config.js'
+import { MONGO_URI } from '../config.js'
 
-mongoose.connect(uri)
+mongoose.connect(MONGO_URI)
   .then(() => console.log('Conectado a MONGODB'))
   .catch((error) => console.error(error))
 

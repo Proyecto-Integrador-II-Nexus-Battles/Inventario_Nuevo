@@ -51,21 +51,22 @@ export class cardsController {
   }
 
   static async getBankCard (req, res) {
-    const { id } = req.body
-    const response = await CardModel.getBankCard({ id })
+    const { IdUsuario } = req.body
+    const response = await CardModel.getBankCard({ IdUsuario })
     const IDs = []
-    response.forEach(e => {
+    response.forEach((e) => {
       IDs.push(e.CARTA_ID)
     })
     let cards = await CardModel.getAll(IDs)
-    cards = cards.map(card => {
-      const cantidad = response.find(e => e.CARTA_ID === card.id).CANTIDAD
+    cards = cards.map((card) => {
+      const cantidad = response.find((e) => e.CARTA_ID === card.id).CANTIDAD
 
       return {
         carta: card,
         cantidad: cantidad || 0
       }
     })
+    console.log('Estas son las cartas: ', cards)
     res.json(cards)
   }
 }

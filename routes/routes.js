@@ -14,4 +14,4 @@ cardsRoutes.post('/getBankCards', cardsController.getBankCard) // Devuelve todas
 cardsRoutes.delete('/delete-card', cardsController.deleteBankCard) // Elimina las cartas de mi banco
 cardsRoutes.get('/getEcommerceCard/:id', cardsController.getEcommerceCard)
 cardsRoutes.post('/getCardsbyID', cardsController.getCardsbyID)
-cardsRoutes.get('/cards', cardsController.filterCards) 
+cardsRoutes.get('/cards', cardsController.filterCards)
