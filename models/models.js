@@ -1,20 +1,30 @@
 import { heroes, armors, items, epics, weapons, mibanco , creditos} from "./database.js";
 import { HOST, PORT } from "../config.js";
-import mongoose, { model } from "mongoose";
 import fs from "fs";
 
 async function insertIfNotExists(model, filePath) {
   try {
     const jsonData = fs.readFileSync(filePath, "utf8");
     const data = JSON.parse(jsonData);
-    const count = await model.countDocuments();
-
-    if (count !== data.length) {
-      const result = await model.insertMany(data);
-      console.log("Documents inserted successfully:", result);
-    } else {
-      console.log("Collection already has documents. Skipping insertion.");
-    }
+    data.forEach((element) => {
+      model.findOne({ _id: element._id }).then((result) => {
+        if (!result) {
+          model.create(element).then((result) => {
+            console.log("Documento insertado", result);
+          });
+        }
+        if (result) {
+          model
+            .updateOne({ _id: element._id }, element)
+            .then((result) => {
+              console.log("Documento actualizado", result);
+            })
+            .catch((error) => {
+              console.error("Error al actualizar documento", error);
+            });
+        }
+      });
+    });
   } catch (error) {
     console.error("Error inserting documents:", error);
   }
@@ -169,17 +179,22 @@ export class CardModel {
 
   // ? MI BANCO
 
-  static async getBankCard({ id: IdUsuario }) {
-    let cardsIDs = [];
-    const response = await mibanco.find({ ID_USUARIO: IdUsuario });
-    cardsIDs = response.map((IDs) => {
-      return {
-        CARTA_ID: IDs.CARTA_ID,
-        CANTIDAD: IDs.CANTIDAD,
-      };
-    });
-    console.log(cardsIDs);
-    return cardsIDs;
+  static async getBankCard({ IdUsuario }) {
+    try {
+      let cardsIDs = [];
+      const response = await mibanco.find({ ID_USUARIO: IdUsuario });
+      console.log(response);
+      cardsIDs = response.map((IDs) => {
+        return {
+          CARTA_ID: IDs.CARTA_ID,
+          CANTIDAD: IDs.CANTIDAD,
+        };
+      });
+      console.log(cardsIDs);
+      return cardsIDs;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   static async addBankCard({ CARTA_ID, CANTIDAD, ID_USUARIO }) {
