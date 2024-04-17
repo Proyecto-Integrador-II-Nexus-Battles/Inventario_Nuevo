@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { cardsController,creditosController } from "../controllers/controller.js";
+import {
+  cardsController,
+  creditosController,
+} from "../controllers/controller.js";
 
 export const cardsRoutes = Router();
 // ? <--INVENTARIO-->
@@ -17,5 +20,5 @@ cardsRoutes.get("/cards", cardsController.filterCards);
 
 // ?  <--CREDITOS-->
 cardsRoutes.post("/add-creditos", creditosController.addCredits);
-cardsRoutes.get("/get-creditos/:id", creditosController.getCredits);
+cardsRoutes.get("/get-creditos", creditosController.getCredits);
 cardsRoutes.post("/delete-creditos", creditosController.deleteCredits);

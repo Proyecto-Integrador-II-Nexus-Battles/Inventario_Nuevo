@@ -89,8 +89,8 @@ export class cardsController {
 
 export class creditosController {
   static async getCredits(req, res) {
-    const { id } = req.params;
-    const credit = await CreditosModel.getCreditos(id);
+    const { IdUsuario } = req.body;
+    const credit = await CreditosModel.getCreditos(IdUsuario);
     res.json(credit);
   }
 
