@@ -1,4 +1,12 @@
-import { heroes, armors, items, epics, weapons, mibanco , creditos} from "./database.js";
+import {
+  heroes,
+  armors,
+  items,
+  epics,
+  weapons,
+  mibanco,
+  creditos,
+} from "./database.js";
 import { HOST, PORT } from "../config.js";
 import fs from "fs";
 
@@ -74,7 +82,6 @@ async function findCards() {
   }
 }
 
-
 async function obtenerPreciosAPI() {
   console.log(`${HOST}:${PORT}/vitrina/getPrices`);
   const req = await fetch(`${HOST}:${PORT}/vitrina/getPrices`);
@@ -118,8 +125,6 @@ export class CardModel {
     return cards; // Devolver todas las cartas
   }
 
-  
-
   static async getEcommerceCard(id) {
     try {
       let cardsWithPrices = await obtenerCardsConPrecios();
@@ -132,7 +137,6 @@ export class CardModel {
       throw error;
     }
   }
-  
 
   static async getCardsbyID(ids) {
     try {
@@ -244,20 +248,20 @@ export class CardModel {
   }
 }
 
-
 // ? Creditos
 export class CreditosModel {
   static async getCreditos(IdUsuario) {
     console.log(IdUsuario);
-    const response = await creditos.findOne({ ID_USUARIO : IdUsuario});
+    const response = await creditos.findOne({ ID_USUARIO: IdUsuario });
     console.log(response);
     return response;
   }
 
-  static async addCreditos({ ID_USUARIO, CANTIDAD }) {
+  static async addCreditos({ IdUsuario, CANTIDAD }) {
     try {
-      
-      const existingCreditos = await creditos.findOne({ ID_USUARIO });
+      const existingCreditos = await creditos.findOne({
+        ID_USUARIO: IdUsuario,
+      });
 
       if (existingCreditos) {
         existingCreditos.CANTIDAD += CANTIDAD;
@@ -265,7 +269,7 @@ export class CreditosModel {
         return existingCreditos;
       } else {
         const newCreditos = new creditos({
-          ID_USUARIO,
+          ID_USUARIO: IdUsuario,
           CANTIDAD,
         });
         await newCreditos.save();
@@ -277,20 +281,23 @@ export class CreditosModel {
     }
   }
 
-  static async deleteCreditos({ ID_USUARIO, CANTIDAD }) {
+  static async deleteCreditos({ IdUsuario, CANTIDAD }) {
     try {
-      const resultado = await creditos.findOne({ID_USUARIO});
+      const resultado = await creditos.findOne({ ID_USUARIO: IdUsuario });
       if (resultado) {
-        if(resultado.CANTIDAD  <= 0){
+        if (resultado.CANTIDAD <= 0) {
           return {
             success: false,
-            message: "No se encontró ningún crédito para eliminar, el suario tiene 0 créditos",}
-        }else{
+            message:
+              "No se encontró ningún crédito para eliminar, el suario tiene 0 créditos",
+          };
+        } else {
           resultado.CANTIDAD -= CANTIDAD;
           await resultado.save();
           return {
             success: true,
-            message: "Créditos eliminados exitosamente",}
+            message: "Créditos eliminados exitosamente",
+          };
         }
       } else {
         return {

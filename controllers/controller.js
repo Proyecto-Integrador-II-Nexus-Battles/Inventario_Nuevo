@@ -87,9 +87,7 @@ export class cardsController {
   }
 }
 
-
 export class creditosController {
-
   static async getCredits(req, res) {
     const { id } = req.params;
     const credit = await CreditosModel.getCreditos(id);
@@ -97,37 +95,33 @@ export class creditosController {
   }
 
   static async addCredits(req, res) {
-    try{
-      const { ID_USUARIO, CANTIDAD } = req.body;
-      console.log(ID_USUARIO, CANTIDAD);
-      await CreditosModel.addCreditos({ ID_USUARIO, CANTIDAD });
+    try {
+      const { IdUsuario, CANTIDAD } = req.body;
+      console.log(IdUsuario, CANTIDAD);
+      await CreditosModel.addCreditos({ IdUsuario, CANTIDAD });
       res.status(200).json({
         success: true,
         message: "Creditos agregados exitosamente.",
-      }
-
-      );
+      });
     } catch (error) {
       res
         .status(500)
         .json({ success: false, error: "Error al agregar los creditos." });
     }
-    
   }
 
-  
-
   static async deleteCredits(req, res) {
-    try{
-      const { ID_USUARIO, CANTIDAD } = req.body;
-      const deleteCred = await CreditosModel.deleteCreditos({ ID_USUARIO, CANTIDAD });
-      res.status(200).json(deleteCred);  
+    try {
+      const { IdUsuario, CANTIDAD } = req.body;
+      const deleteCred = await CreditosModel.deleteCreditos({
+        IdUsuario,
+        CANTIDAD,
+      });
+      res.status(200).json(deleteCred);
     } catch (error) {
       res
         .status(500)
         .json({ success: false, error: "Error al eliminar los creditos." });
     }
-  
   }
 }
-
