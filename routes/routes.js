@@ -1,7 +1,8 @@
-import { Router } from 'express'
-import { cardsController, creditosController } from '../controllers/controller.js'
-
-export const cardsRoutes = Router()
+import { Router } from "express";
+import {
+  cardsController,
+  creditosController,
+} from "../controllers/controller.js";
 
 // ? <--INVENTARIO-->
 cardsRoutes.get('/getAllCards', cardsController.getAll) // Devuelve todas las catas //*(requerido en inventario)
@@ -19,6 +20,6 @@ cardsRoutes.post('/deckCard', cardsController.addDeckCard)
 cardsRoutes.delete('/delete-card', cardsController.deleteBankCard) // Elimina las cartas de mi banco
 
 // ?  <--CREDITOS-->
-cardsRoutes.post('/add-creditos', creditosController.addCredits)
-cardsRoutes.post('/delete-creditos', creditosController.deleteCredits)
-cardsRoutes.get('/get-creditos/:id', creditosController.getCredits)
+cardsRoutes.post("/add-creditos", creditosController.addCredits);
+cardsRoutes.get("/get-creditos", creditosController.getCredits);
+cardsRoutes.post("/delete-creditos", creditosController.deleteCredits);

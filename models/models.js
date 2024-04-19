@@ -4,16 +4,27 @@ import fs from 'fs'
 
 async function insertIfNotExists (model, filePath) {
   try {
-    const jsonData = fs.readFileSync(filePath, 'utf8')
-    const data = JSON.parse(jsonData)
-    const count = await model.countDocuments()
-
-    if (count !== data.length) {
-      const result = await model.insertMany(data)
-      console.log('Documents inserted successfully:', result)
-    } else {
-      console.log('Collection already has documents. Skipping insertion.')
-    }
+    const jsonData = fs.readFileSync(filePath, "utf8");
+    const data = JSON.parse(jsonData);
+    data.forEach((element) => {
+      model.findOne({ _id: element._id }).then((result) => {
+        if (!result) {
+          model.create(element).then((result) => {
+            console.log("Documento insertado", result);
+          });
+        }
+        if (result) {
+          model
+            .updateOne({ _id: element._id }, element)
+            .then((result) => {
+              console.log("Documento actualizado", result);
+            })
+            .catch((error) => {
+              console.error("Error al actualizar documento", error);
+            });
+        }
+      });
+    });
   } catch (error) {
     console.error('Error inserting documents:', error)
   }
@@ -264,8 +275,7 @@ export class CardModel {
       console.error('Error al eliminar el documento:', error)
     }
   }
-
-  static async addDeckCard ({ IdUsuario, IdHeroe, IdsCartas }) {
+static async addDeckCard ({ IdUsuario, IdHeroe, IdsCartas }) {
     try {
       const existingUser = await deckcard.findOne({ ID_USUARIO: IdUsuario })
 
@@ -298,16 +308,18 @@ export class CardModel {
 }
 // ? Creditos
 export class CreditosModel {
-  static async getCreditos (IdUsuario) {
-    console.log(IdUsuario)
-    const response = await creditos.findOne({ ID_USUARIO: IdUsuario })
-    console.log(response)
-    return response
+  static async getCreditos(IdUsuario) {
+    console.log(IdUsuario);
+    const response = await creditos.findOne({ ID_USUARIO: IdUsuario });
+    console.log(response);
+    return response;
   }
 
-  static async addCreditos ({ ID_USUARIO, CANTIDAD }) {
+  static async addCreditos({ IdUsuario, CANTIDAD }) {
     try {
-      const existingCreditos = await creditos.findOne({ ID_USUARIO })
+      const existingCreditos = await creditos.findOne({
+        ID_USUARIO: IdUsuario,
+      });
 
       if (existingCreditos) {
         existingCreditos.CANTIDAD += CANTIDAD
@@ -316,11 +328,11 @@ export class CreditosModel {
       } else {
         // eslint-disable-next-line new-cap
         const newCreditos = new creditos({
-          ID_USUARIO,
-          CANTIDAD
-        })
-        await newCreditos.save()
-        return newCreditos
+          ID_USUARIO: IdUsuario,
+          CANTIDAD,
+        });
+        await newCreditos.save();
+        return newCreditos;
       }
     } catch (error) {
       console.error('Error al agregar créditos:', error)
@@ -328,22 +340,23 @@ export class CreditosModel {
     }
   }
 
-  static async deleteCreditos ({ ID_USUARIO, CANTIDAD }) {
+  static async deleteCreditos({ IdUsuario, CANTIDAD }) {
     try {
-      const resultado = await creditos.findOne({ ID_USUARIO })
+      const resultado = await creditos.findOne({ ID_USUARIO: IdUsuario });
       if (resultado) {
         if (resultado.CANTIDAD <= 0) {
           return {
             success: false,
-            message: 'No se encontró ningún crédito para eliminar, el suario tiene 0 créditos'
-          }
+            message:
+              "No se encontró ningún crédito para eliminar, el suario tiene 0 créditos",
+          };
         } else {
-          resultado.CANTIDAD -= CANTIDAD
-          await resultado.save()
+          resultado.CANTIDAD -= CANTIDAD;
+          await resultado.save();
           return {
             success: true,
-            message: 'Créditos eliminados exitosamente'
-          }
+            message: "Créditos eliminados exitosamente",
+          };
         }
       } else {
         return {

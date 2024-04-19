@@ -7,11 +7,12 @@ import fs from 'fs'
 import http from 'http'
 import https from 'https'
 
-const app = express() // --> Iniciamos express
-app.use(json())
-app.disable('x-powered-by') // --> Deshabilitar el header x-powered-by
-app.use(cors())
-app.use('/inventario', cardsRoutes)
+const app = express(); // --> Iniciamos express
+app.use(express.urlencoded({ extended: true }));
+app.use(json());
+app.disable("x-powered-by"); // --> Deshabilitar el header x-powered-by
+app.use(cors());
+app.use("/inventario", cardsRoutes);
 
 const options = {
   key: fs.readFileSync('certs/privkey.pem'),
