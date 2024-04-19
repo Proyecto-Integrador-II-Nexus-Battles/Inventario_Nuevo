@@ -20,5 +20,5 @@ cardsRoutes.delete('/delete-card', cardsController.deleteBankCard) // Elimina la
 
 // ?  <--CREDITOS-->
 cardsRoutes.post('/add-creditos', creditosController.addCredits)
+cardsRoutes.get('/get-creditos', creditosController.getCredits)
 cardsRoutes.post('/delete-creditos', creditosController.deleteCredits)
-cardsRoutes.get('/get-creditos/:id', creditosController.getCredits)

@@ -116,22 +116,20 @@ export class cardsController {
 
 export class creditosController {
   static async getCredits (req, res) {
-    const { id } = req.params
-    const credit = await CreditosModel.getCreditos(id)
+    const { IdUsuario } = req.body
+    const credit = await CreditosModel.getCreditos(IdUsuario)
     res.json(credit)
   }
 
   static async addCredits (req, res) {
     try {
-      const { ID_USUARIO, CANTIDAD } = req.body
-      console.log(ID_USUARIO, CANTIDAD)
-      await CreditosModel.addCreditos({ ID_USUARIO, CANTIDAD })
+      const { IdUsuario, CANTIDAD } = req.body
+      console.log(IdUsuario, CANTIDAD)
+      await CreditosModel.addCreditos({ IdUsuario, CANTIDAD })
       res.status(200).json({
         success: true,
         message: 'Creditos agregados exitosamente.'
-      }
-
-      )
+      })
     } catch (error) {
       res
         .status(500)
@@ -141,8 +139,11 @@ export class creditosController {
 
   static async deleteCredits (req, res) {
     try {
-      const { ID_USUARIO, CANTIDAD } = req.body
-      const deleteCred = await CreditosModel.deleteCreditos({ ID_USUARIO, CANTIDAD })
+      const { IdUsuario, CANTIDAD } = req.body
+      const deleteCred = await CreditosModel.deleteCreditos({
+        IdUsuario,
+        CANTIDAD
+      })
       res.status(200).json(deleteCred)
     } catch (error) {
       res
