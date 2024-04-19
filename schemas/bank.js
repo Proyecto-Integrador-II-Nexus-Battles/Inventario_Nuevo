@@ -11,7 +11,20 @@ export const miBancoSchema = new Schema(
 
 miBancoSchema.set("toJSON", {
   transform: (document, returnedObject) => {
-    delete returnedObject.__v;
-    delete returnedObject._id;
-  },
-});
+    delete returnedObject.__v
+    delete returnedObject._id
+  }
+})
+
+export const deckCardSchema = new Schema ({
+  ID_USUARIO: { type: Number, required: true },
+  ID_HEROE: { type: String, required: true },
+  CARTAS_IDs: { type: [String], required: true }
+}, { timestamps: true, collection: 'miBanco' })
+
+deckCardSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    delete returnedObject.__v
+    delete returnedObject._id
+  }
+})
