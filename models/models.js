@@ -284,34 +284,38 @@ export class CardModel {
     }
   }
 
-  static async addDeckCard ({ IdUsuario, IdHeroe, IdsCartas }) {
+  static async addDeckCard ({ IdUsuario, cartas }) {
     try {
       const existingUser = await deckcard.findOne({ ID_USUARIO: IdUsuario })
-
+      console.log(IdUsuario)
+      console.log(existingUser)
       if (existingUser) {
-        // Actualizar el campo HEROE_ID con el nuevo IdHeroe
-        existingUser.ID_HEROE = IdHeroe
+        existingUser.CARTAS_IDs = cartas
 
-        // Actualizar el campo CARTAS_IDs con los nuevos IdsCartas
-        existingUser.CARTAS_IDs = IdsCartas
-
-        // Guardar los cambios en la base de datos
         await existingUser.save()
 
-        // Devolver el usuario modificado
         return existingUser
       } else {
         // eslint-disable-next-line new-cap
         const newDeck = new deckcard({
           ID_USUARIO: IdUsuario,
-          ID_HEROE: IdHeroe,
-          CARTAS_IDs: IdsCartas
+          CARTAS_IDs: cartas
         })
         await newDeck.save()
         return newDeck
       }
     } catch (e) {
       console.log('Error al guardar el mazo: ' + e.message)
+    }
+  }
+
+  static async getDeckCard ({ IdUsuario }) {
+    try {
+      const response = await deckcard.findOne({ ID_USUARIO: IdUsuario })
+      console.log(response.CARTAS_IDs)
+      return response.CARTAS_IDs
+    } catch (e) {
+      console.log('Error al obtener el mazo: ' + e.message)
     }
   }
 }

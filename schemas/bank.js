@@ -18,9 +18,8 @@ miBancoSchema.set('toJSON', {
 
 export const deckCardSchema = new Schema({
   ID_USUARIO: { type: Number, required: true },
-  ID_HEROE: { type: String, required: true },
   CARTAS_IDs: { type: [String], required: true }
-}, { timestamps: true, collection: 'miBanco' })
+}, { timestamps: true, collection: 'mazo' })
 
 deckCardSchema.set('toJSON', {
   transform: (document, returnedObject) => {

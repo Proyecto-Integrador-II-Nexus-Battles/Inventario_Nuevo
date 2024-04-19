@@ -16,6 +16,7 @@ cardsRoutes.post('/add-cards', cardsController.addBankCard) // Agrega cartas a l
 cardsRoutes.post('/getBankCards', cardsController.getBankCard) // Devuelve todas las cartas del usuario //*(requerido en miBanco)
 cardsRoutes.post('/getCardsbyID', cardsController.getCardsbyID)
 cardsRoutes.post('/deckCard', cardsController.addDeckCard)
+cardsRoutes.post('/getDeckCard', cardsController.getDeckCard)
 cardsRoutes.delete('/delete-card', cardsController.deleteBankCard) // Elimina las cartas de mi banco
 
 // ?  <--CREDITOS-->

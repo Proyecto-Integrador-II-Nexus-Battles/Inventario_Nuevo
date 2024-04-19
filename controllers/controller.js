@@ -104,13 +104,19 @@ export class cardsController {
   }
 
   static async addDeckCard (req, res) {
-    const { IdUsuario, IdHeroe, IdsCartas } = req.body
-    const response = await CardModel.addDeckCard(IdUsuario, IdHeroe, IdsCartas)
+    const { IdUsuario, cartas } = req.body
+    const response = await CardModel.addDeckCard({ IdUsuario, cartas })
     res.status(200).json({
       success: true,
       message: 'Mazo guardado exitosamente en el banco.',
       mazo: response
     })
+  }
+
+  static async getDeckCard (req, res) {
+    const { IdUsuario } = req.body
+    const response = await CardModel.getDeckCard({ IdUsuario })
+    res.json(response)
   }
 }
 
