@@ -119,7 +119,6 @@ export class cardsController {
     res.json(response)
   }
 }
-
 export class creditosController {
   static async getCredits (req, res) {
     const { IdUsuario } = req.body

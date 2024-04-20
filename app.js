@@ -19,9 +19,9 @@ const options = {
   cert: fs.readFileSync('certs/cert.pem')
 }
 
-http.createServer(app).listen(30)
-https.createServer(options, app).listen(APP_PORT)
-console.log(`Server running on port https://localhost:${APP_PORT}`)
+http.createServer(app).listen(30);
+https.createServer(options, app).listen(APP_PORT);
+console.log(`Server running on port https://localhost:${APP_PORT}`);
 
 CardModel.getEcommerceCard()
 databaseCheck()
