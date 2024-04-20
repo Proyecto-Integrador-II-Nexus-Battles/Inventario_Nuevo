@@ -102,32 +102,39 @@ export class cardsController {
     })
     res.json(cards)
   }
-static async addDeckCard (req, res) {
-    const { IdUsuario, IdHeroe, IdsCartas } = req.body
-    const response = await CardModel.addDeckCard(IdUsuario, IdHeroe, IdsCartas)
+
+  static async addDeckCard (req, res) {
+    const { IdUsuario, cartas } = req.body
+    const response = await CardModel.addDeckCard({ IdUsuario, cartas })
     res.status(200).json({
       success: true,
       message: 'Mazo guardado exitosamente en el banco.',
       mazo: response
     })
   }
+
+  static async getDeckCard (req, res) {
+    const { IdUsuario } = req.body
+    const response = await CardModel.getDeckCard({ IdUsuario })
+    res.json(response)
+  }
 }
 export class creditosController {
-  static async getCredits(req, res) {
-    const { IdUsuario } = req.body;
-    const credit = await CreditosModel.getCreditos(IdUsuario);
-    res.json(credit);
+  static async getCredits (req, res) {
+    const { IdUsuario } = req.body
+    const credit = await CreditosModel.getCreditos(IdUsuario)
+    res.json(credit)
   }
 
-  static async addCredits(req, res) {
+  static async addCredits (req, res) {
     try {
-      const { IdUsuario, CANTIDAD } = req.body;
-      console.log(IdUsuario, CANTIDAD);
-      await CreditosModel.addCreditos({ IdUsuario, CANTIDAD });
+      const { IdUsuario, CANTIDAD } = req.body
+      console.log(IdUsuario, CANTIDAD)
+      await CreditosModel.addCreditos({ IdUsuario, CANTIDAD })
       res.status(200).json({
         success: true,
-        message: "Creditos agregados exitosamente.",
-      });
+        message: 'Creditos agregados exitosamente.'
+      })
     } catch (error) {
       res
         .status(500)
@@ -135,14 +142,14 @@ export class creditosController {
     }
   }
 
-  static async deleteCredits(req, res) {
+  static async deleteCredits (req, res) {
     try {
-      const { IdUsuario, CANTIDAD } = req.body;
+      const { IdUsuario, CANTIDAD } = req.body
       const deleteCred = await CreditosModel.deleteCreditos({
         IdUsuario,
-        CANTIDAD,
-      });
-      res.status(200).json(deleteCred);
+        CANTIDAD
+      })
+      res.status(200).json(deleteCred)
     } catch (error) {
       res
         .status(500)

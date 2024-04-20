@@ -1,30 +1,39 @@
-import { heroes, armors, items, epics, weapons, mibanco, deckcard, creditos } from './database.js'
+import {
+  heroes,
+  armors,
+  items,
+  epics,
+  weapons,
+  mibanco,
+  creditos,
+  deckcard
+} from './database.js'
 import { HOST, PORT } from '../config.js'
 import fs from 'fs'
 
 async function insertIfNotExists (model, filePath) {
   try {
-    const jsonData = fs.readFileSync(filePath, "utf8");
-    const data = JSON.parse(jsonData);
+    const jsonData = fs.readFileSync(filePath, 'utf8')
+    const data = JSON.parse(jsonData)
     data.forEach((element) => {
       model.findOne({ _id: element._id }).then((result) => {
         if (!result) {
           model.create(element).then((result) => {
-            console.log("Documento insertado", result);
-          });
+            console.log('Documento insertado', result)
+          })
         }
         if (result) {
           model
             .updateOne({ _id: element._id }, element)
             .then((result) => {
-              console.log("Documento actualizado", result);
+              console.log('Documento actualizado', result)
             })
             .catch((error) => {
-              console.error("Error al actualizar documento", error);
-            });
+              console.error('Error al actualizar documento', error)
+            })
         }
-      });
-    });
+      })
+    })
   } catch (error) {
     console.error('Error inserting documents:', error)
   }
@@ -73,7 +82,9 @@ async function findCards () {
     throw error // Relanzar el error para que sea manejado por el código que llama
   }
 }
+
 async function obtenerPreciosAPI () {
+  console.log(`${HOST}:${PORT}/vitrina/getPrices`)
   const req = await fetch(`${HOST}:${PORT}/vitrina/getPrices`)
   const precios = req.json()
   return precios
@@ -211,13 +222,10 @@ export class CardModel {
 
   static async getBankCard ({ IdUsuario }) {
     try {
-      console.log(IdUsuario)
       let cardsIDs = []
-      const response = await mibanco.find(
-        { ID_USUARIO: IdUsuario }
-      )
+      const response = await mibanco.find({ ID_USUARIO: IdUsuario })
       console.log(response)
-      cardsIDs = response.map(IDs => {
+      cardsIDs = response.map((IDs) => {
         return {
           CARTA_ID: IDs.CARTA_ID,
           CANTIDAD: IDs.CANTIDAD
@@ -275,6 +283,41 @@ export class CardModel {
       console.error('Error al eliminar el documento:', error)
     }
   }
+
+  static async addDeckCard ({ IdUsuario, cartas }) {
+    try {
+      const existingUser = await deckcard.findOne({ ID_USUARIO: IdUsuario })
+      console.log(IdUsuario)
+      console.log(existingUser)
+      if (existingUser) {
+        existingUser.CARTAS_IDs = cartas
+
+        await existingUser.save()
+
+        return existingUser
+      } else {
+        // eslint-disable-next-line new-cap
+        const newDeck = new deckcard({
+          ID_USUARIO: IdUsuario,
+          CARTAS_IDs: cartas
+        })
+        await newDeck.save()
+        return newDeck
+      }
+    } catch (e) {
+      console.log('Error al guardar el mazo: ' + e.message)
+    }
+  }
+
+  static async getDeckCard ({ IdUsuario }) {
+    try {
+      const response = await deckcard.findOne({ ID_USUARIO: IdUsuario })
+      console.log(response.CARTAS_IDs)
+      return response.CARTAS_IDs
+    } catch (e) {
+      console.log('Error al obtener el mazo: ' + e.message)
+    }
+  }
 static async addDeckCard ({ IdUsuario, IdHeroe, IdsCartas }) {
     try {
       const existingUser = await deckcard.findOne({ ID_USUARIO: IdUsuario })
@@ -308,18 +351,18 @@ static async addDeckCard ({ IdUsuario, IdHeroe, IdsCartas }) {
 }
 // ? Creditos
 export class CreditosModel {
-  static async getCreditos(IdUsuario) {
-    console.log(IdUsuario);
-    const response = await creditos.findOne({ ID_USUARIO: IdUsuario });
-    console.log(response);
-    return response;
+  static async getCreditos (IdUsuario) {
+    console.log(IdUsuario)
+    const response = await creditos.findOne({ ID_USUARIO: IdUsuario })
+    console.log(response)
+    return response
   }
 
-  static async addCreditos({ IdUsuario, CANTIDAD }) {
+  static async addCreditos ({ IdUsuario, CANTIDAD }) {
     try {
       const existingCreditos = await creditos.findOne({
-        ID_USUARIO: IdUsuario,
-      });
+        ID_USUARIO: IdUsuario
+      })
 
       if (existingCreditos) {
         existingCreditos.CANTIDAD += CANTIDAD
@@ -329,10 +372,10 @@ export class CreditosModel {
         // eslint-disable-next-line new-cap
         const newCreditos = new creditos({
           ID_USUARIO: IdUsuario,
-          CANTIDAD,
-        });
-        await newCreditos.save();
-        return newCreditos;
+          CANTIDAD
+        })
+        await newCreditos.save()
+        return newCreditos
       }
     } catch (error) {
       console.error('Error al agregar créditos:', error)
@@ -340,23 +383,23 @@ export class CreditosModel {
     }
   }
 
-  static async deleteCreditos({ IdUsuario, CANTIDAD }) {
+  static async deleteCreditos ({ IdUsuario, CANTIDAD }) {
     try {
-      const resultado = await creditos.findOne({ ID_USUARIO: IdUsuario });
+      const resultado = await creditos.findOne({ ID_USUARIO: IdUsuario })
       if (resultado) {
         if (resultado.CANTIDAD <= 0) {
           return {
             success: false,
             message:
-              "No se encontró ningún crédito para eliminar, el suario tiene 0 créditos",
-          };
+              'No se encontró ningún crédito para eliminar, el suario tiene 0 créditos'
+          }
         } else {
-          resultado.CANTIDAD -= CANTIDAD;
-          await resultado.save();
+          resultado.CANTIDAD -= CANTIDAD
+          await resultado.save()
           return {
             success: true,
-            message: "Créditos eliminados exitosamente",
-          };
+            message: 'Créditos eliminados exitosamente'
+          }
         }
       } else {
         return {
