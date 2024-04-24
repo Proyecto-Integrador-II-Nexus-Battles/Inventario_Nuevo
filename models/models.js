@@ -127,6 +127,7 @@ async function updateCards(collection, idCard, data) {
 export class CardModel {
   static async getAll(IDs) {
     const cards = await findCards();
+    if (IDs === undefined) return cards;
     const filteredCards = [];
     if (IDs) {
       IDs.forEach((id) => {
