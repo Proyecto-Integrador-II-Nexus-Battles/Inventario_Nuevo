@@ -129,7 +129,7 @@ export class CardModel {
     const cards = await findCards();
     if (IDs === undefined) return cards;
     const filteredCards = [];
-    if (IDs) {
+    if (IDs.length > 0) {
       IDs.forEach((id) => {
         cards.find((card) => {
           if (card._id === id) {
