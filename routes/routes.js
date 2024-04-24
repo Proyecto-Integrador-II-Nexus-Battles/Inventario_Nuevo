@@ -21,7 +21,7 @@ cardsRoutes.post("/getCardsbyID", cardsController.getCardsbyID);
 cardsRoutes.post("/deckCard", cardsController.addDeckCard);
 cardsRoutes.post("/getDeckCard", cardsController.getDeckCard);
 cardsRoutes.delete("/delete-card", cardsController.deleteBankCard); // Elimina las cartas de mi banco
-cardsRoutes.delete("/delete/cards", cardsController.deleteCards);
+cardsRoutes.delete("/delete/cards", cardsController.deleteBankCards);
 
 // ?  <--CREDITOS-->
 cardsRoutes.post("/add-creditos", creditosController.addCredits);
