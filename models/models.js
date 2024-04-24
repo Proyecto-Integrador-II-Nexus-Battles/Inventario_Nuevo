@@ -267,12 +267,31 @@ export class CardModel {
 
   static async deleteBankCard({ CARTA_ID, ID_USUARIO }) {
     try {
-      const resultado = await mibanco.findOneAndDelete({
+      const resultado = await mibanco.findOne({
         ID_USUARIO,
         CARTA_ID,
       });
       if (resultado) {
-        return { success: true, message: "Documento eliminado" };
+        if (resultado.CANTIDAD <= 0) {
+          return {
+            success: false,
+            message:
+              "No se encontró ninguna carta para eliminar, el usuario no tiene cartas",
+          };
+        } else if (resultado.CANTIDAD > 1) {
+          resultado.CANTIDAD -= 1;
+          await resultado.save();
+          return {
+            success: true,
+            message: "Carta eliminada exitosamente",
+          };
+        } else {
+          await mibanco.deleteOne({ ID_USUARIO, CARTA_ID });
+          return {
+            success: true,
+            message: "Carta eliminada exitosamente",
+          };
+        }
       } else {
         return {
           success: false,
