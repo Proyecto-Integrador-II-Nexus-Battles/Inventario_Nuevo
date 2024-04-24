@@ -317,8 +317,9 @@ export class CardModel {
     try {
       CARTAS.forEach(async (carta) => {
         const CARTA_ID = carta.CARTA_ID;
+        const ID_USUARIO = IdUsuario;
         const resultado = await mibanco.findOne({
-          ID_USUARIO: IdUsuario,
+          ID_USUARIO,
           CARTA_ID,
         });
         if (resultado) {
@@ -335,7 +336,7 @@ export class CardModel {
               success: true,
               message: "Carta eliminada exitosamente",
             };
-          } else if (resultado.CANTIDAD === carta.CANTIDAD) {
+          } else {
             await mibanco.deleteOne({ ID_USUARIO, CARTA_ID });
             return {
               success: true,
