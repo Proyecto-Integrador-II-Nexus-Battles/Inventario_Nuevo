@@ -315,9 +315,11 @@ export class CardModel {
 
   static async deleteBankCards({ CARTAS, IdUsuario }) {
     try {
+      const ID_USUARIO = IdUsuario;
+      console.log(CARTAS);
+      console.log(ID_USUARIO);
       CARTAS.forEach(async (carta) => {
         const CARTA_ID = carta.CARTA_ID;
-        const ID_USUARIO = IdUsuario;
         const resultado = await mibanco.findOne({
           ID_USUARIO,
           CARTA_ID,
