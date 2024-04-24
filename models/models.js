@@ -126,19 +126,24 @@ async function updateCards(collection, idCard, data) {
 // Clase para el modelo de la carta
 export class CardModel {
   static async getAll(IDs) {
-    const cards = await findCards();
-    if (IDs === undefined) return cards;
-    const filteredCards = [];
-    if (IDs.length > 0) {
-      IDs.forEach((id) => {
-        cards.find((card) => {
-          if (card._id === id) {
-            filteredCards.push(card);
-          }
+    try {
+      const cards = await findCards();
+      if (IDs === undefined) return cards;
+      const filteredCards = [];
+      if (IDs.length > 0) {
+        IDs.forEach((id) => {
+          cards.find((card) => {
+            if (card._id === id) {
+              filteredCards.push(card);
+            }
+          });
         });
-      });
+      }
+      return filteredCards; // Devolver todas las cartas
+    } catch (error) {
+      console.error("Error al obtener todas las cartas:", error);
+      throw error;
     }
-    return filteredCards; // Devolver todas las cartas
   }
 
   static async getEcommerceCard(id) {
