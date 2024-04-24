@@ -126,14 +126,18 @@ async function updateCards(collection, idCard, data) {
 // Clase para el modelo de la carta
 export class CardModel {
   static async getAll(IDs) {
-    let cards = await findCards();
-    console.log(IDs);
+    const cards = await findCards();
+    const filteredCards = [];
     if (IDs) {
-      cards = cards.filter((card) => {
-        return IDs.includes(card.id);
+      IDs.forEach((id) => {
+        cards.find((card) => {
+          if (card._id === id) {
+            filteredCards.push(card);
+          }
+        });
       });
     }
-    return cards; // Devolver todas las cartas
+    return filteredCards; // Devolver todas las cartas
   }
 
   static async getEcommerceCard(id) {
