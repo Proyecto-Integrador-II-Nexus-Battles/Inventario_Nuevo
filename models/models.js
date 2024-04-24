@@ -161,7 +161,7 @@ export class CardModel {
       }
       let cardsWithPrices = await obtenerCardsConPrecios();
       cardsWithPrices = cardsWithPrices.filter((card) => {
-        return !!ids || ids.includes(card._id);
+        return !ids || (Array.isArray(ids) && ids.includes(card._id));
       });
       return cardsWithPrices;
     } catch (error) {
