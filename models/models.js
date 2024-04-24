@@ -130,7 +130,7 @@ export class CardModel {
       const cards = await findCards();
       if (IDs === undefined) return cards;
       const filteredCards = [];
-      if (IDs.length > 0) {
+      if (Array.isArray(IDs)) {
         IDs.forEach((id) => {
           cards.find((card) => {
             if (card._id === id) {
@@ -317,7 +317,6 @@ export class CardModel {
     try {
       const ID_USUARIO = IdUsuario;
       console.log(CARTAS);
-      console.log(ID_USUARIO);
       CARTAS.forEach(async (carta) => {
         const CARTA_ID = carta.CARTA_ID;
         const resultado = await mibanco.findOne({
