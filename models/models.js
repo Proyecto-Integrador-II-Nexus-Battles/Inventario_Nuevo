@@ -307,6 +307,47 @@ export class CardModel {
     }
   }
 
+  static async deleteBankCards({ CARTAS, IdUsuario }) {
+    try {
+      CARTAS.forEach(async (carta) => {
+        const CARTA_ID = carta.CARTA_ID;
+        const resultado = await mibanco.findOne({
+          ID_USUARIO: IdUsuario,
+          CARTA_ID,
+        });
+        if (resultado) {
+          if (resultado.CANTIDAD <= 0) {
+            return {
+              success: false,
+              message:
+                "No se encontró ninguna carta para eliminar, el usuario no tiene cartas",
+            };
+          } else if (resultado.CANTIDAD > carta.CANTIDAD) {
+            resultado.CANTIDAD -= carta.CANTIDAD;
+            await resultado.save();
+            return {
+              success: true,
+              message: "Carta eliminada exitosamente",
+            };
+          } else if (resultado.CANTIDAD === carta.CANTIDAD) {
+            await mibanco.deleteOne({ ID_USUARIO, CARTA_ID });
+            return {
+              success: true,
+              message: "Carta eliminada exitosamente",
+            };
+          }
+        } else {
+          return {
+            success: false,
+            message: "No se encontró ningún documento para eliminar",
+          };
+        }
+      });
+    } catch (error) {
+      console.error("Error al eliminar el documento:", error);
+    }
+  }
+
   static async addDeckCard({ IdUsuario, cartas }) {
     try {
       const existingUser = await deckcard.findOne({ ID_USUARIO: IdUsuario });

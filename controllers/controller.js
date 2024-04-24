@@ -87,6 +87,23 @@ export class cardsController {
     }
   }
 
+  static async deleteBankCards(req, res) {
+    try {
+      const { CARTAS, IdUsuario } = req.body;
+      await CardModel.deleteBankCards({ CARTAS, IdUsuario });
+      res.status(200).json({
+        success: true,
+        message: "Carta eliminada exitosamente del banco.",
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        success: false,
+        error: "Hubo un error al eliminar la carta del banco.",
+      });
+    }
+  }
+
   static async getBankCard(req, res) {
     const { IdUsuario } = req.body;
     const response = await CardModel.getBankCard({ IdUsuario });
